@@ -27,9 +27,10 @@
                 IdCode id = new IdCode(isikukoodid[i]);
                 if (id.IsValid())
                 {
-                    Console.ForegroundColor = (ConsoleColor)r.Next(0, 16);
-                    Console.WriteLine("BirthDate: " + id.GetBirthDate());
+                    id.GenderColor();
+                    Console.WriteLine("Gender: " + id.GetGender());
                     Console.WriteLine("Age: " + id.GetAge());
+                    Console.WriteLine("BirthDate: " + id.GetBirthDate());
                     Console.WriteLine("Hospital: " + id.GetHospital());
                     Console.WriteLine();
                     Console.ResetColor();

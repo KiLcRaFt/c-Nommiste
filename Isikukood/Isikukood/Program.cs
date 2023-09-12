@@ -59,6 +59,29 @@ namespace Isikukood
             return 1800 + (genderNumber - 1) / 2 * 100 + Get2DigitYear();
         }
 
+        public string GetGender()
+        {
+            int genderNumber = GetGenderNumber();
+            string m = "Man";
+            string w = "Woman";
+            string idk = "Unknown";
+            if (genderNumber == 1) { return m; }
+            else if (genderNumber == 2) {  return w; }
+            else if (genderNumber == 3) {  return m; }
+            else if (genderNumber == 4) {  return w; }
+            else if (genderNumber == 5) {  return m; }
+            else if (genderNumber == 6) {  return w; }
+            return idk;
+        }
+
+        public bool GenderColor()
+        {
+            string color = GetGender();
+            if (color == "Man") { Console.ForegroundColor = ConsoleColor.Cyan; }
+            else if (color == "Woman") { Console.ForegroundColor = ConsoleColor.Magenta; }
+            else { Console.ForegroundColor = ConsoleColor.DarkRed; }
+            return true;
+        }
         public int GetAge()
         {
             int year = GetFullYear();
