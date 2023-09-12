@@ -80,21 +80,21 @@ namespace Isikukood
         {
             int num = GetHospitalNumber();
             string x = "";
-            if (num >= 001 || num <= 010) { x = "Kuressaare haigla"; }
-            else if (num >= 011 || num <= 020) { x = "Tartu Ülikooli Naistekliinik"; }
-            else if (num >= 021 || num <= 150) { x = "Ida-Tallinna keskhaigla, Pelgulinna sünnitusmaja (Tallinn)"; }
-            else if (num >= 151 || num <= 160) { x = "Keila haigla"; }
-            else if (num >= 161 || num <= 220) { x = "Rapla haigla, Loksa haigla, Hiiumaa haigla (Kärdla)"; }
-            else if (num >= 221 || num <= 270) { x = "Ida-Viru keskhaigla (Kohtla-Järve, endine Jõhvi)"; }
-            else if (num >= 271 || num <= 370) { x = "Maarjamõisa kliinikum (Tartu), Jõgeva haigla"; }
-            else if (num >= 371 || num <= 420) { x = "Narva haigla"; }
-            else if (num >= 421 || num <= 470) { x = "Pärnu haigla "; }
-            else if (num >= 471 || num <= 490) { x = "Haapsalu haigla"; }
-            else if (num >= 491 || num <= 520) { x = "Järvamaa haigla (Paide)"; }
-            else if (num >= 521 || num <= 570) { x = "Rakvere haigla, Tapa haigla"; }
-            else if (num >= 571 || num <= 600) { x = "Valga haigla "; }
-            else if (num >= 601 || num <= 650) { x = "Viljandi haigla"; }
-            else if (num >= 651 || num <= 700) { x = "Lõuna-Eesti haigla (Võru), Põlva haigla " + num; }
+            if (num >= 001 && num <= 010) { x = "Kuressaare haigla"; }
+            else if (num >= 011 && num <= 020) { x = "Tartu Ülikooli Naistekliinik"; }
+            else if (num >= 021 && num <= 150) { x = "Ida-Tallinna keskhaigla, Pelgulinna sünnitusmaja (Tallinn)"; }
+            else if (num >= 151 && num <= 160) { x = "Keila haigla"; }
+            else if (num >= 161 && num <= 220) { x = "Rapla haigla, Loksa haigla, Hiiumaa haigla (Kärdla)"; }
+            else if (num >= 221 && num <= 270) { x = "Ida-Viru keskhaigla (Kohtla-Järve, endine Jõhvi)"; }
+            else if (num >= 271 && num <= 370) { x = "Maarjamõisa kliinikum (Tartu), Jõgeva haigla"; }
+            else if (num >= 371 && num <= 420) { x = "Narva haigla"; }
+            else if (num >= 421 && num <= 470) { x = "Pärnu haigla "; }
+            else if (num >= 471 && num <= 490) { x = "Haapsalu haigla"; }
+            else if (num >= 491 && num <= 520) { x = "Järvamaa haigla (Paide)"; }
+            else if (num >= 521 && num <= 570) { x = "Rakvere haigla, Tapa haigla"; }
+            else if (num >= 571 && num <= 600) { x = "Valga haigla "; }
+            else if (num >= 601 && num <= 650) { x = "Viljandi haigla"; }
+            else if (num >= 651 && num <= 700) { x = "Lõuna-Eesti haigla (Võru), Põlva haigla " + num; }
             else { x = "unknown"; }
             return x;
         }
