@@ -9,7 +9,7 @@ namespace Ulesane_2_Nommiste
     public class Group
     {
         public List<string> Members { get; } = new List<string>();
-        public List<string> Age { get; } = new List<string>();
+        public List<int> Age { get; } = new List<int>();
         private readonly int _maxAmount;
 
         public Group(int maxAmount)
@@ -17,10 +17,17 @@ namespace Ulesane_2_Nommiste
             _maxAmount = maxAmount;
         }
 
+        public bool CheckMember(string member)
+        {
+            if (Members.Contains(member) || Members.Count >= _maxAmount)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public bool AddMember(string member)
         {
-            if (Members.Contains(member)) return false;
-            if (Members.Count >= _maxAmount) return false;
             Members.Add(member);
             AddAge();
             return true;
@@ -28,8 +35,11 @@ namespace Ulesane_2_Nommiste
 
         public bool AddAge()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Sisseta inimese vana: ");
-            string age = Console.ReadLine();
+            Console.ResetColor();
+            string ans = Console.ReadLine();
+            int age = Convert.ToInt32(ans);
             if (Age.Count >= _maxAmount) return false;
             Age.Add(age);
             return true;
@@ -45,5 +55,10 @@ namespace Ulesane_2_Nommiste
             return Members.Contains(member);
         }
 
+        public string OldestMember()
+        {
+            int ind = Age.IndexOf(Age.Max());
+            return Members[ind];
+        }
     }
 }
