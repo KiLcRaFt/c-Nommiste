@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TEMP.TTHK\\Source\\Repos\\KiLcRaFt\\c-Nommiste\\Ulesane 2 Nommiste.csproj",
+      "projectUniqueName": "C:\\Users\\TEMP.TTHK\\source\\repos\\KiLcRaFt\\c-Nommiste\\EsimeneProjekt\\Ulesane 2 Nommiste.csproj",
       "projectName": "Ulesane 2 Nommiste",
-      "projectPath": "C:\\Users\\TEMP.TTHK\\Source\\Repos\\KiLcRaFt\\c-Nommiste\\Ulesane 2 Nommiste.csproj",
+      "projectPath": "C:\\Users\\TEMP.TTHK\\source\\repos\\KiLcRaFt\\c-Nommiste\\EsimeneProjekt\\Ulesane 2 Nommiste.csproj",
       "packagesPath": "C:\\Users\\TEMP.TTHK\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TEMP.TTHK\\Source\\Repos\\KiLcRaFt\\c-Nommiste\\obj\\",
+      "outputPath": "C:\\Users\\TEMP.TTHK\\source\\repos\\KiLcRaFt\\c-Nommiste\\EsimeneProjekt\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
