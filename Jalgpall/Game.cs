@@ -8,11 +8,12 @@ namespace Jalgpall
 {
     public class Game
     {
-        public Team HomeTeam { get; }
-        public Team AwayTeam { get; }
-        public Stadium Stadium { get; }
-        public Ball Ball { get; private set; }
+        public Team HomeTeam { get; } //тип данных HomeTeam
+        public Team AwayTeam { get; } //тип данных AwayTeam
+        public Stadium Stadium { get; } //тип данных Stadium
+        public Ball Ball { get; private set; } //тип данных Ball
 
+        //конструкор
         public Game(Team homeTeam, Team awayTeam, Stadium stadium)
         {
             HomeTeam = homeTeam;
@@ -22,28 +23,28 @@ namespace Jalgpall
             Stadium = stadium;
         }
 
-        public void Start()
+        public void Start() //настройки для старта
         {
             Ball = new Ball(Stadium.Width / 2, Stadium.Height / 2, this);
             HomeTeam.StartGame(Stadium.Width / 2, Stadium.Height);
             AwayTeam.StartGame(Stadium.Width / 2, Stadium.Height);
         }
-        private (double, double) GetPositionForAwayTeam(double x, double y)
+        private (double, double) GetPositionForAwayTeam(double x, double y) // позиция для команды
         {
             return (Stadium.Width - x, Stadium.Height - y);
         }
 
-        public (double, double) GetPositionForTeam(Team team, double x, double y)
+        public (double, double) GetPositionForTeam(Team team, double x, double y) // позиция для команды
         {
             return team == HomeTeam ? (x, y) : GetPositionForAwayTeam(x, y);
         }
 
-        public (double, double) GetBallPositionForTeam(Team team)
+        public (double, double) GetBallPositionForTeam(Team team) // позиция мяча
         {
             return GetPositionForTeam(team, Ball.X, Ball.Y);
         }
 
-        public void SetBallSpeedForTeam(Team team, double vx, double vy)
+        public void SetBallSpeedForTeam(Team team, double vx, double vy) // скорость мяча
         {
             if (team == HomeTeam)
             {
@@ -55,7 +56,7 @@ namespace Jalgpall
             }
         }
 
-        public void Move()
+        public void Move() // движение обоих команд
         {
             HomeTeam.Move();
             AwayTeam.Move();

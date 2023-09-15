@@ -11,10 +11,11 @@ namespace Jalgpall
         public double X { get; private set; }
         public double Y { get; private set; }
 
-        private double _vx, _vy;
+        private double _vx, _vy; //скорость и дистанция
 
-        private Game _game;
+        private Game _game; //игры мяч
 
+        //конструктор
         public Ball(double x, double y, Game game)
         {
             _game = game;
@@ -22,17 +23,17 @@ namespace Jalgpall
             Y = y;
         }
 
-        public void SetSpeed(double vx, double vy)
+        public void SetSpeed(double vx, double vy) //задать скорость
         {
             _vx = vx;
             _vy = vy;
         }
 
-        public void Move()
+        public void Move() //движение
         {
             double newX = X + _vx;
             double newY = Y + _vy;
-            if (_game.Stadium.IsIn(newX, newY))
+            if (_game.Stadium.IsIn(newX, newY)) //если мяч на поле, передвинуть 
             {
                 X = newX;
                 Y = newY;
