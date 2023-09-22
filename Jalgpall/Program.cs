@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,24 +11,24 @@ namespace Jalgpall
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Snowflake");
-            Team t1 = new Team("Bogemic");   
-            Player t1p1 = new Player("Ivan");
-            t1.AddPlayer(t1p1);
-            Player t1p2 = new Player("Magamed");
-            t1.AddPlayer(t1p2);
+            Team t1 = new Team("Bogemic", 1);
+            Team t2 = new Team("Dueches Commandos", 2);
+            for (int i = 0;i<3 ;i++) 
+            {
+                Player t1p1 = new Player("Ivan", "x");
+                t1.AddPlayer(t1p1);
 
-            Team t2 = new Team("Dueches Commandos");
-            Player t2p1 = new Player("Nicolas");
-            t2.AddPlayer(t2p1);
-            Player t2p2 = new Player("Adolf");
-            t2.AddPlayer(t2p2);
+                Player t2p1 = new Player("Nicolas", "x");
+                t2.AddPlayer(t2p1);
+            } 
+
     
-            Stadium stadik = new Stadium(400, 300);
+            Stadium stadik = new(81, 26);
             Game game = new Game(t1, t2, stadik);
+            Ball ball = new Ball(40, 12.5, game);
             game.Start();
             stadik.Draw();
-            
+            Console.SetCursorPosition(0, 27);
         }
     }
 }

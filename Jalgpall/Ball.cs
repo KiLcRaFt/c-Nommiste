@@ -10,6 +10,7 @@ namespace Jalgpall
     {
         public double X { get; private set; }
         public double Y { get; private set; }
+        public string sym { get; } = "õ";
 
         private double _vx, _vy; //скорость и дистанция
 
@@ -44,6 +45,12 @@ namespace Jalgpall
                 _vy = 0;
             }
         }
-
+        public void DrawBall(Ball ball)
+        {
+            int posX = (int)Math.Round(X); 
+            int posY = (int)Math.Round(Y);
+            Console.SetCursorPosition(posX, posY);
+            Console.Write(ball.sym);
+        }
     }
 }

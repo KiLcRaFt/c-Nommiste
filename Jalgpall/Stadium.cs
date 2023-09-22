@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,25 +9,23 @@ namespace Jalgpall
 {
     public class Stadium
     {
+        public int Width { get; }
+        public int Height { get; }
         List<Figure> wallList;
         public Stadium(int width, int height)
         {
             Width = width;
             Height = height;
-            HorizontalLine upLine = new HorizontalLine(0, Width - 2, 0, '-');
-            HorizontalLine downLine = new HorizontalLine(0, Width - 2, Height - 1, '-');
-            VerticalLine leftLine = new VerticalLine(0, Height - 1, 0, '|');
-            VerticalLine rightLine = new VerticalLine(0, Height - 1, Width - 2, '|');
-
-            wallList.Add(upLine);
-            wallList.Add(downLine);
-            wallList.Add(leftLine);
-            wallList.Add(rightLine);
+            wallList = new List<Figure>();
+            HorizontalLine upline = new HorizontalLine(0, Width-1, 0, '-');
+            HorizontalLine downline = new HorizontalLine(0, Width-1, Height-1, '-');
+            VerticalLine leftline = new VerticalLine(0, Height-1, 0, '|');
+            VerticalLine rightline = new VerticalLine(0, Height-1, Width-1, '|');
+            wallList.Add(upline);
+            wallList.Add(downline);
+            wallList.Add(leftline);
+            wallList.Add(rightline);
         }
-
-        public int Width { get; }
-
-        public int Height { get; }
 
         public bool IsIn(double x, double y) // находится ли мяч на поле?
         {
@@ -37,7 +36,7 @@ namespace Jalgpall
         {
             foreach (var wall in wallList)
             {
-                wall.Draw();
+                wall.Drow();
             }
         }
     }

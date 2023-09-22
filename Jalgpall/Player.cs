@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Jalgpall
         public double Y { get; private set; } //координата по Y
         private double _vx, _vy; //расстояние до мяча по X и Y
         public Team? Team { get; set; } = null;  //отношение к команде
+        public string sym { get; private set; }
 
         private const double MaxSpeed = 5; //макс скорость
         private const double MaxKickSpeed = 25; //макс скорость удара
@@ -22,9 +24,11 @@ namespace Jalgpall
         private Random _random = new Random(); //рандом
 
         //конструкторы
-        public Player(string name) //зависит от строки с полем
+        public Player(string name, string sym) //зависит от строки с полем
         {
             Name = name;
+
+            this.sym = sym;
         }
 
         public Player(string name, double x, double y, Team team) //информация об игроке на поле
@@ -85,6 +89,7 @@ namespace Jalgpall
             var newAbsolutePosition = Team.Game.GetPositionForTeam(Team, newX, newY);
             if (Team.Game.Stadium.IsIn(newAbsolutePosition.Item1, newAbsolutePosition.Item2)) // если да, то новая позиция для игрока
             {
+                Player.DrawPlayer(player); ??????????
                 X = newX;
                 Y = newY;
             }
@@ -93,5 +98,13 @@ namespace Jalgpall
                 _vx = _vy = 0;
             }
         }
+        public void DrawPlayer(Player player)
+        {
+            int posX = (int)Math.Round(X);
+            int posY = (int)Math.Round(Y);
+            Console.SetCursorPosition(posX, posY);
+            Console.Write(player.sym);
+        }
+
     }
 }

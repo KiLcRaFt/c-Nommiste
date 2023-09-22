@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,8 +27,9 @@ namespace Jalgpall
         public void Start() //настройки для старта
         {
             Ball = new Ball(Stadium.Width / 2, Stadium.Height / 2, this);
-            HomeTeam.StartGame(Stadium.Width / 2, Stadium.Height);
-            AwayTeam.StartGame(Stadium.Width / 2, Stadium.Height);
+            Ball.DrawBall(Ball);
+            HomeTeam.StartGame(Stadium.Width-1 / 2, Stadium.Height-1);
+            AwayTeam.StartGame(Stadium.Width-1 / 2, Stadium.Height-1);
         }
         private (double, double) GetPositionForAwayTeam(double x, double y) // позиция для команды
         {

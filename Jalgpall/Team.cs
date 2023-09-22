@@ -10,12 +10,15 @@ namespace Jalgpall
     {
         public List<Player> Players { get; } = new List<Player>(); // список объектов Плейер
         public string Name { get; private set; }
+        public int Number { get; private set; }
         public Game Game { get; set; } //тип данных Гейм
 
-        public Team(string name) //зависит от строки с полем
+        public Team(string name, int num) //зависит от строки с полем
         {
             Name = name;
+            Number = num;
         }
+
 
         // конструкур
         public void StartGame(int width, int height) // генерирует позиции игроков на поле
@@ -23,10 +26,24 @@ namespace Jalgpall
             Random rnd = new Random();
             foreach (var player in Players) // для каждого игрока
             {
-                player.SetPosition(
-                    rnd.NextDouble() * width,
-                    rnd.NextDouble() * height
+                if (player.Team.Number == 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    player.SetPosition(
+                    rnd.Next(0, width / 2),
+                    rnd.Next(0, height)
                     );
+                }
+                else if (player.Team.Number == 2) 
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    player.SetPosition(
+                    rnd.Next(width / 2, width),
+                    rnd.Next(0, height)
+                    );
+                }
+                player.DrawPlayer(player);
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 
@@ -64,6 +81,7 @@ namespace Jalgpall
             return closestPlayer;
         }
 
+        
         public void Move() //ищет ближайшего игрока и двигает его ещё ближе
         {
             GetClosestPlayerToBall().MoveTowardsBall();
