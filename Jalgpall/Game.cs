@@ -62,7 +62,7 @@ namespace Jalgpall
         {
             HomeTeam.Move();
             AwayTeam.Move();
-            Ball.Move();
+            Ball.BallMove(Ball);
         }
     }
 }

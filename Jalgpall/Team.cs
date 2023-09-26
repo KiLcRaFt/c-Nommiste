@@ -26,8 +26,10 @@ namespace Jalgpall
             Random rnd = new Random();
             foreach (var player in Players) // для каждого игрока
             {
+                player.ClearPlayer(player);
                 if (player.Team.Number == 1)
                 {
+
                     Console.ForegroundColor = ConsoleColor.Green;
                     player.SetPosition(
                     rnd.Next(0, width / 2),
@@ -85,7 +87,7 @@ namespace Jalgpall
         public void Move() //ищет ближайшего игрока и двигает его ещё ближе
         {
             GetClosestPlayerToBall().MoveTowardsBall();
-            Players.ForEach(player => player.Move());
+            Players.ForEach(player => player.Move(player));
         }
     }
 }

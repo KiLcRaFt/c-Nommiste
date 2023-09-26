@@ -30,7 +30,7 @@ namespace Jalgpall
             _vy = vy;
         }
 
-        public void Move() //движение
+        public void BallMove(Ball ball) //движение
         {
             double newX = X + _vx;
             double newY = Y + _vy;
@@ -38,12 +38,14 @@ namespace Jalgpall
             {
                 X = newX;
                 Y = newY;
+                
             }
             else
             {
                 _vx = 0;
                 _vy = 0;
             }
+            ball.DrawBall(ball);
         }
         public void DrawBall(Ball ball)
         {

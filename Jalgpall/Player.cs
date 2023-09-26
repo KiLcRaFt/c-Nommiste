@@ -68,7 +68,7 @@ namespace Jalgpall
             _vy = dy / ratio;
         }
 
-        public void Move() //движение относительно мяча
+        public void Move(Player player) //движение относительно мяча
         {
             if (Team.GetClosestPlayerToBall() != this) //сохранять позицию, если не заданы параметры
             {
@@ -89,7 +89,6 @@ namespace Jalgpall
             var newAbsolutePosition = Team.Game.GetPositionForTeam(Team, newX, newY);
             if (Team.Game.Stadium.IsIn(newAbsolutePosition.Item1, newAbsolutePosition.Item2)) // если да, то новая позиция для игрока
             {
-                Player.DrawPlayer(player); ??????????
                 X = newX;
                 Y = newY;
             }
@@ -97,6 +96,7 @@ namespace Jalgpall
             {
                 _vx = _vy = 0;
             }
+            player.DrawPlayer(player);
         }
         public void DrawPlayer(Player player)
         {
@@ -104,6 +104,16 @@ namespace Jalgpall
             int posY = (int)Math.Round(Y);
             Console.SetCursorPosition(posX, posY);
             Console.Write(player.sym);
+        }
+
+        public void ClearPlayer(Player player)
+        {
+            Console.ForegroundColor = ConsoleColor.Black;
+            int posX = (int)Math.Round(X); // Convert X to an integer
+            int posY = (int)Math.Round(Y); // Convert Y to an integer
+            Console.SetCursorPosition(posX, posY);
+            Console.Write(player.sym);
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
     }
