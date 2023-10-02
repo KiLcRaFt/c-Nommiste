@@ -1,6 +1,6 @@
 ﻿namespace Naidis_Vorm
 {
-    partial class Form1
+    partial class MyForm
     {
         /// <summary>
         ///  Required designer variable.
