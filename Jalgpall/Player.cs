@@ -96,7 +96,7 @@ namespace Jalgpall
             {
                 _vx = _vy = 0;
             }
-            player.DrawPlayer(player);
+            
         }
         public void DrawPlayer(Player player)
         {

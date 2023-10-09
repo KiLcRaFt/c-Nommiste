@@ -63,6 +63,16 @@ namespace Jalgpall
             HomeTeam.Move();
             AwayTeam.Move();
             Ball.BallMove(Ball);
+            //MoveBalls(Ball);
+        }
+
+        public static void MoveBalls(Ball ball)
+        {
+            int posX = (int)Math.Round(ball.X);
+            int posY = (int)Math.Round(ball.Y);
+            Console.SetCursorPosition(posX, posY);
+            Console.Write(ball.sym);
+
         }
     }
 }
