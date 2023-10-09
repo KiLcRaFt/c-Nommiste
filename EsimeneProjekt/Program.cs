@@ -11,6 +11,7 @@
             int grupmem = Convert.ToInt32(groupmembers);
 
             Group group = new Group(grupmem);
+
             int n = 0;
             while(n < grupmem)
             {

@@ -7,19 +7,19 @@ using System.Xml.Linq;
 
 namespace Naidis_Vorm
 {
-    public partial class TreeForm: Form
+    public partial class TreeForm : Form
     {
         TreeView tree;
         Button btn;
         Label lbl;
-        public TreeForm() 
+        public TreeForm()
         {
-            this.Height= 600;
-            this.Width= 800;
+            this.Height = 600;
+            this.Width = 800;
             this.Text = "Vorm põhielementidega";
-            tree= new TreeView();
+            tree = new TreeView();
             tree.Dock = DockStyle.Left;
-            tree.BorderStyle= BorderStyle.Fixed3D;
+            tree.BorderStyle = BorderStyle.Fixed3D;
             tree.AfterSelect += Tree_AfterSelect;
             TreeNode treeNode = new TreeNode("Elemendid");
             //Button
@@ -38,11 +38,11 @@ namespace Naidis_Vorm
             treeNode.Nodes.Add(new TreeNode("Silt-Label"));
             lbl = new Label { };
             this.Controls.Add(lbl);
-            lbl.Visible= false;
+            lbl.Visible = false;
             lbl.Text = "PapaBemaGenaBori --> BeatBox";
             lbl.Location = new Point(tree.Right, 0);
             lbl.Size = new Size(Width + tree.Width, btn.Top - 5);
-            lbl.BackColor= Color.LightCyan;
+            lbl.BackColor = Color.LightCyan;
             lbl.Font = new Font("Tahoma", 24);
 
 
@@ -65,7 +65,7 @@ namespace Naidis_Vorm
 
         private void Tree_AfterSelect(object? sender, TreeViewEventArgs e)
         {
-            if (e.Node.Text == "Nupp-Button" && btn.Visible == false) 
+            if (e.Node.Text == "Nupp-Button" && btn.Visible == false)
             {
                 this.btn.Visible = true;
             }
@@ -86,7 +86,7 @@ namespace Naidis_Vorm
 
         private void Btn_Click(object? sender, EventArgs e)
         {
-            if (btn.BackColor == Color.Black) 
+            if (btn.BackColor == Color.Black)
             {
                 btn.BackColor = Color.Yellow;
                 btn.ForeColor = Color.Black;
@@ -96,7 +96,7 @@ namespace Naidis_Vorm
                 btn.BackColor = Color.Black;
                 btn.ForeColor = Color.Yellow;
             }
-            
+
         }
     }
 }
