@@ -129,9 +129,9 @@ namespace Naidis_Form
             btn3.Location = new Point(lb.Left, btn2.Bottom);
             btn3.Click += Btn3_Click;
 
-            this.Control.Add(
-            new Control[] { tree }
-            new Control[] { btn, lbl, txt_box, r1, r2, c1, c2, pb, lb, btn2, btn3 });
+            //this.Control.Add(
+            //new Control[] {tree },
+            //    new Control[] { btn, lbl, txt_box, r1, r2, c1, c2, pb, lb, btn2, btn3 });
 
             //data
             treeNode.Nodes.Add(new TreeNode("DataGridView"));
@@ -143,7 +143,7 @@ namespace Naidis_Form
             dataGrid.Width = 300;
             dataGrid.DataSource = ds;
             dataGrid.AutoGenerateColumns=true;
-            ds.Visible = false;
+            dataGrid.Visible = false;
             
             dataGrid.DataMember = "Orders";
             this.Controls.Add(dataGrid);
@@ -317,14 +317,14 @@ namespace Naidis_Form
                 btn2.Visible = true;
                 btn3.Visible = true;
             }
-            if (e.Node.Text == "DataGridView" && ds.Visible == true)
-            {
-                ds.Visible = false;
-            }
-            else if (e.Node.Text == "DataGridView" && ds.Visible == false)
-            {
-                ds.Visible = true;
-            }
+            //if (e.Node.Text == "DataGridView" && DataGrid.Visible == true)
+            //{
+            //    dataGrid.Visible = false;
+            //}
+            //else if (e.Node.Text == "DataGridView" && dataGrid.Visible == false)
+            //{
+            //    dataGrid.Visible = true;
+            //}
             tree.SelectedNode = null;
 
         }

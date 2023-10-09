@@ -1,4 +1,4 @@
-namespace Naidis_Form
+namespace Naidis_Vorm
 {
     public partial class MyForm : Form
     {
