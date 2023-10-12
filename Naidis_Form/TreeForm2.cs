@@ -21,8 +21,8 @@ namespace Naidis_Form
         ListBox lb;
         public TreeForm()
         {
-            this.Height = 600;
-            this.Width = 800;
+            this.Height = 800;
+            this.Width = 1000;
             this.Text = "Vorm põhielementidega";
             tree = new TreeView();
             tree.Dock = DockStyle.Left;
@@ -129,22 +129,18 @@ namespace Naidis_Form
             btn3.Location = new Point(lb.Left, btn2.Bottom);
             btn3.Click += Btn3_Click;
 
-            //this.Control.Add(
-            //new Control[] {tree },
-            //    new Control[] { btn, lbl, txt_box, r1, r2, c1, c2, pb, lb, btn2, btn3 });
-
-            //data
+            //datagrid
             treeNode.Nodes.Add(new TreeNode("DataGridView"));
-            DataSet ds = new DataSet("XML fail. Menüü");
+            DataSet ds = new DataSet("Xml fail");
             ds.ReadXml(@"..\..\..\CustomersOrders.xml");
             DataGridView dataGrid = new DataGridView();
-            dataGrid.Location = new Point(tree.Width+pb.Width, pb.Location.Y);
-            dataGrid.Height = 200;
-            dataGrid.Width = 300;
+            dataGrid.Location = new Point(tree.Width + pb.Width, pb.Location.Y);
+            dataGrid.Height = 400;
+            dataGrid.Width = 600;
             dataGrid.DataSource = ds;
-            dataGrid.AutoGenerateColumns=true;
-            dataGrid.Visible = false;
-            
+            dataGrid.AutoGenerateColumns = true;
+            dataGrid.Visible = true;
+
             dataGrid.DataMember = "Orders";
             this.Controls.Add(dataGrid);
             
@@ -317,11 +313,11 @@ namespace Naidis_Form
                 btn2.Visible = true;
                 btn3.Visible = true;
             }
-            //if (e.Node.Text == "DataGridView" && DataGrid.Visible == true)
+            //if (e.Node.Text == "Xml fail" && dataGrid.Visible = true)
             //{
             //    dataGrid.Visible = false;
             //}
-            //else if (e.Node.Text == "DataGridView" && dataGrid.Visible == false)
+            //else if (e.Node.Text == "Xml fail" && dataGrid.Visible = false)
             //{
             //    dataGrid.Visible = true;
             //}
