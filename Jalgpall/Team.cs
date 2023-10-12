@@ -26,25 +26,26 @@ namespace Jalgpall
             Random rnd = new Random();
             foreach (var player in Players) // для каждого игрока
             {
-                player.ClearPlayer(player);
+                //player.ClearPlayer(player);
                 if (player.Team.Number == 1)
                 {
 
                     Console.ForegroundColor = ConsoleColor.Green;
                     player.SetPosition(
-                    rnd.Next(0, width / 2),
-                    rnd.Next(0, height)
+                    rnd.Next(1, width / 2),
+                    rnd.Next(1, height)
                     );
+                    player.DrawPlayer(player);
                 }
                 else if (player.Team.Number == 2) 
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     player.SetPosition(
                     rnd.Next(width / 2, width),
-                    rnd.Next(0, height)
+                    rnd.Next(1, height)
                     );
+                    player.DrawPlayer(player);
                 }
-                player.DrawPlayer(player);
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
@@ -84,10 +85,26 @@ namespace Jalgpall
         }
 
         
-        public void Move() //ищет ближайшего игрока и двигает его ещё ближе
+        public void MoveTeam() //ищет ближайшего игрока и двигает его ещё ближе
         {
             GetClosestPlayerToBall().MoveTowardsBall();
-            Players.ForEach(player => player.Move(player));
+            foreach (Player player in Players)
+            {
+                if (player.Team.Number == 1)
+                {
+                    player.ClearPlayer(player);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Players.ForEach(player => player.Move(player));
+                }
+                else if (player.Team.Number == 2)
+                {
+                    player.ClearPlayer(player);
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Players.ForEach(player => player.Move(player));
+                }
+
+            }
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

@@ -79,9 +79,9 @@ namespace Jalgpall
             if (GetDistanceToBall() < BallKickDistance) // если дистанция до мяча меньше расстояния удара, то расчтываем удар
             {
                 Team.SetBallSpeed(
-                    MaxKickSpeed * _random.NextDouble(),
-                    MaxKickSpeed * (_random.NextDouble() - 0.5)
-                    );
+                MaxKickSpeed * _random.NextDouble(),
+                MaxKickSpeed * (_random.NextDouble() - 0.5)
+                );
             }
 
             var newX = X + _vx;
@@ -91,12 +91,12 @@ namespace Jalgpall
             {
                 X = newX;
                 Y = newY;
+                player.DrawPlayer(player);
             }
             else
             {
                 _vx = _vy = 0;
             }
-            
         }
         public void DrawPlayer(Player player)
         {

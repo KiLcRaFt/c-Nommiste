@@ -32,6 +32,7 @@ namespace Jalgpall
 
         public void BallMove(Ball ball) //движение
         {
+            ball.DeleteBall(ball);
             double newX = X + _vx;
             double newY = Y + _vy;
             if (_game.Stadium.IsIn(newX, newY)) //если мяч на поле, передвинуть 
@@ -55,5 +56,14 @@ namespace Jalgpall
             Console.Write(ball.sym);
         }
 
+        public void DeleteBall(Ball ball)
+        {
+            Console.ForegroundColor = ConsoleColor.Black;
+            int posX = (int)Math.Round(X); // Convert X to an integer
+            int posY = (int)Math.Round(Y); // Convert Y to an integer
+            Console.SetCursorPosition(posX, posY);
+            Console.Write(ball.sym);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
 }

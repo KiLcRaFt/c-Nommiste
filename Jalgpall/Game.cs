@@ -60,10 +60,9 @@ namespace Jalgpall
 
         public void Move() // движение обоих команд
         {
-            HomeTeam.Move();
-            AwayTeam.Move();
+            HomeTeam.MoveTeam();
+            AwayTeam.MoveTeam();
             Ball.BallMove(Ball);
-            //MoveBalls(Ball);
         }
 
         public static void MoveBalls(Ball ball)
