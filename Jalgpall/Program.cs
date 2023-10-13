@@ -17,9 +17,8 @@ namespace Jalgpall
             Team t2 = new Team("Dueches Commandos", 2);
             Stadium stadium = new(81, 26);
             Game game = new Game(t1, t2, stadium);
-            Ball ball = new Ball(40, 12.5, game);
-            stadium.Draw();
-            for (int i = 0;i<1 ;i++) 
+            //Ball ball = new Ball(40, 12.5, game);
+            for (int i = 0;i<6 ;i++) 
             {
                 Player t1p1 = new Player("Ivan", "x");
                 t1.AddPlayer(t1p1);
@@ -27,12 +26,15 @@ namespace Jalgpall
                 Player t2p1 = new Player("Nicolas", "x");
                 t2.AddPlayer(t2p1);
             }
-            
-            
+
+            stadium.Draw();
             game.Start();
+            Console.WriteLine(" ");
+            Console.ReadLine();
             while (true)
             {
-               
+                Console.Clear();
+                stadium.Draw();
                 Console.SetCursorPosition(0, 27);
                 game.Move();
                 Console.WriteLine(" ");

@@ -23,6 +23,7 @@ namespace Naidis_Form
             this.Height = y;
             this.Width = x;
             this.Text = nimetus;
+
         }
 
     }

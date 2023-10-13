@@ -8,36 +8,39 @@ namespace Naidis_Form
 {
     public class Triangle
     {
-        public double a, b, c;
+        public double a, b, c, ha, hb, hc;
 
-        public Triangle(double a, double b, double c)
+        public Triangle()
         {
-            this.a = a;
-            this.b = b;
-            this.c = c;
+
         }
 
-        public string outputA() //вывод a
+        public string outputA(double a) //вывод a
         {
             return Convert.ToString(a);
         }
-        public string outputB() //вывод b
+        public string outputB(double b) //вывод b
         {
             return Convert.ToString(b);
         }
-        public string outputC() //вывод c
+        public string outputC(double c) //вывод c
         {
             return Convert.ToString(c);
         }
 
-        public double Perimeter() // расчитывание периметра
+        public double Perimeter(double a, double b, double c) // расчитывание периметра
         {
             return a + b + c;
         }
-        public double Surface() // расчитывание площади
+        public double Surface(double a, double b, double c) // расчитывание площади
         {
-            double p = Perimeter() / 2;
+            double p = Perimeter(a ,b ,c) / 2;
             return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+        }
+
+        public double SurfaceH(double h, double side) // расчитывание площади
+        {
+            return 0.5 * side * h;
         }
 
         public double GetSetA

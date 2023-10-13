@@ -26,6 +26,7 @@ namespace Jalgpall
 
         public void Start() //настройки для старта
         {
+            Console.SetCursorPosition(0, 27);
             Ball = new Ball(Stadium.Width / 2, Stadium.Height / 2, this);
             Ball.DrawBall(Ball);
             HomeTeam.StartGame(Stadium.Width-1 / 2, Stadium.Height-1);

@@ -139,7 +139,7 @@ namespace Naidis_Form
             dataGrid.Width = 600;
             dataGrid.DataSource = ds;
             dataGrid.AutoGenerateColumns = true;
-            dataGrid.Visible = true;
+            dataGrid.Visible = false;
             dataGrid.DataMember = "Order";
             dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGrid.AutoSize = true;
