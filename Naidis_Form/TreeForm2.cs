@@ -60,7 +60,7 @@ namespace Naidis_Form
             txt_box.Height = 50;
             txt_box.Width = 100;
             txt_box.Text = ".....";
-            txt_box.Location = new Point(tree.Width, btn.Top + btn.Height + 5);
+            txt_box.Location = new Point(tree.Width + 50, btn.Top + btn.Height + 5);
             txt_box.KeyDown += new KeyEventHandler(Txt_box_KeyDown);
             this.Controls.Add(txt_box);
 
@@ -69,10 +69,10 @@ namespace Naidis_Form
             treeNode.Nodes.Add(new TreeNode("Radionupp-RadioButton"));
             r1 = new RadioButton();
             r1.Text = "valik 1";
-            r1.Location = new Point(tree.Width + txt_box.Location.Y + txt_box.Height);
+            r1.Location = new Point(txt_box.Bottom + 50, txt_box.Location.Y + txt_box.Height);
             r2 = new RadioButton();
             r2.Text = "valik 2";
-            r2.Location = new Point(r1.Location.X + r1.Width, txt_box.Location.Y + txt_box.Height);
+            r2.Location = new Point(r1.Location.X, txt_box.Location.Y + txt_box.Height + r1.Height);
             r1.CheckedChanged += new EventHandler(RadioButtons_Changed);
             r2.CheckedChanged += new EventHandler(RadioButtons_Changed);
             txt_box.Visible = false;
@@ -140,15 +140,21 @@ namespace Naidis_Form
             dataGrid.DataSource = ds;
             dataGrid.AutoGenerateColumns = true;
             dataGrid.Visible = true;
+            dataGrid.DataMember = "Order";
+            dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGrid.AutoSize = true;
 
-            dataGrid.DataMember = "Orders";
             this.Controls.Add(dataGrid);
-            
-            
-            
 
-            
-            
+            //kolmnurk
+            treeNode.Nodes.Add(new TreeNode("Kolmnurk"));
+
+
+
+
+
+
+
 
 
 
@@ -321,6 +327,11 @@ namespace Naidis_Form
             //{
             //    dataGrid.Visible = true;
             //}
+            if (e.Node.Text == "Kolmnurk")
+            {
+                NewForm nform = new NewForm();
+                nform.ShowDialog();
+            }
             tree.SelectedNode = null;
 
         }
