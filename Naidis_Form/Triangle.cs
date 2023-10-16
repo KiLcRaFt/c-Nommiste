@@ -32,7 +32,7 @@ namespace Naidis_Form
         {
             return a + b + c;
         }
-        public double Height(double a, double b, double c) // расчитывание площади
+        public double Height(double a, double b, double c) // расчитывание высоты
         {
             double p = Perimeter(a, b, c);
             return 2/a * Math.Sqrt(p * (p - a) * (p - b) * (p - c));
@@ -43,7 +43,7 @@ namespace Naidis_Form
             return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
         }
 
-        public double SurfaceH(double h, double side) // расчитывание площади
+        public double SurfaceH(double h, double side) // расчитывание полщади по высоте
         {
             return 0.5 * side * h;
         }
