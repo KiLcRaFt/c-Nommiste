@@ -170,7 +170,7 @@ namespace Naidis_Form
                 if (result == DialogResult.Yes)
                 {
                     txt_box.Enabled = false;
-                    this.Text=txt_box.Text;
+                    this.Text = txt_box.Text;
                 }
                 else
                 {
@@ -224,7 +224,7 @@ namespace Naidis_Form
 
         private void Btn3_Click(object? sender, EventArgs e)
         {
-            if (lb.SelectedItem!=null)
+            if (lb.SelectedItem != null)
             {
                 lb.Items.Remove(lb.SelectedItem);
             }
@@ -233,7 +233,7 @@ namespace Naidis_Form
         private void Btn2_Click(object? sender, EventArgs e)
         {
             string tekst = Interaction.InputBox("Lisa uus väli", "Pealkiri muutmine", "Väli");
-            if (tekst.Length>0 && !lb.Items.Contains(tekst))
+            if (tekst.Length > 0 && !lb.Items.Contains(tekst))
             {
                 lb.Items.Add(tekst);
             }
@@ -329,7 +329,7 @@ namespace Naidis_Form
             //}
             if (e.Node.Text == "Kolmnurk")
             {
-                NewForm nform = new NewForm();
+                Kolmnurk nform = new Kolmnurk();
                 nform.ShowDialog();
             }
             tree.SelectedNode = null;
