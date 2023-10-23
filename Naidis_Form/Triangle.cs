@@ -8,10 +8,13 @@ namespace Naidis_Form
 {
     public class Triangle
     {
-        public double a, b, c, ha, hb, hc;
+        public double a, b, c, h, side;
 
-        public Triangle()
+        public Triangle(double a, double b, double c)
         {
+            a= 0;
+            b= 0;
+            c= 0;
 
         }
 

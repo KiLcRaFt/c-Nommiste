@@ -173,7 +173,7 @@ namespace Naidis_Form
                 b = Convert.ToDouble(txtB.Text);
                 c = Convert.ToDouble(txtC.Text);
                 h = Convert.ToDouble(txtH.Text);
-                triangle = new Triangle();
+                triangle = new Triangle(a, b, c);
                 if (!cb.Checked)
                 {
                     if (triangle.ExistTriangle(a, b, c) != true) { throw new Exception(); };
