@@ -8,38 +8,49 @@ namespace Naidis_Form
 {
     public class Triangle
     {
-        public double a, b, c, ha, hb, hc;
+        public double a, b, c, h, side;
 
-        public Triangle()
+        public Triangle(double a, double b, double c)
         {
+            a= 0;
+            b= 0;
+            c= 0;
 
         }
 
-        public string outputA(double a) //вывод a
+        public string OutputA(double a) //вывод a
         {
             return Convert.ToString(a);
         }
-        public string outputB(double b) //вывод b
+        public string OutputB(double b) //вывод b
         {
             return Convert.ToString(b);
         }
-        public string outputC(double c) //вывод c
+        public string OutputC(double c) //вывод c
         {
             return Convert.ToString(c);
         }
+        public string OutputH(double h) //вывод h
+        {
+            return Convert.ToString(h);
+        }
+
 
         public double Perimeter(double a, double b, double c) // расчитывание периметра
         {
-            return a + b + c;
+            if (a != 0 && b != 0 && c != 0 ) { return a + b + c; }
+            else { return 0; };
         }
         public double Height(double a, double b, double c) // расчитывание высоты
         {
             double p = Perimeter(a, b, c);
-            return 2/a * Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+            p /= 2;
+            double max = Math.Max(a, Math.Max(b, c));
+            return (2 * Math.Sqrt(p * (p - a) * (p - b) * (p - c))) / max;
         }
         public double Surface(double a, double b, double c) // расчитывание площади
         {
-            double p = Perimeter(a ,b ,c) / 2;
+            double p = Perimeter(a, b, c) / 2;
             return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
         }
 
@@ -64,14 +75,12 @@ namespace Naidis_Form
             set { double c = value; }
         }
 
-        public bool ExistTriangle
+        public bool ExistTriangle(double a, double b, double c)
         {
-            get
-            {
-                if ((a < b + c) && (b < a + c) && (c < a + b)) // проверяем треугольник
-                return true;
-                else return false;
-            }
+
+            if ((a < b + c) && (b < a + c) && (c < a + b)) // проверяем треугольник
+            { return true; }
+            else { return false; }
         }
 
     }

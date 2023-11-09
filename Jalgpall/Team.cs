@@ -94,12 +94,14 @@ namespace Jalgpall
                 {
                     player.ClearPlayer(player);
                     Console.ForegroundColor = ConsoleColor.Green;
+                    GetClosestPlayerToBall();
                     Players.ForEach(player => player.Move(player));
                 }
                 else if (player.Team.Number == 2)
                 {
                     player.ClearPlayer(player);
                     Console.ForegroundColor = ConsoleColor.Magenta;
+                    GetClosestPlayerToBall();
                     Players.ForEach(player => player.Move(player));
                 }
 

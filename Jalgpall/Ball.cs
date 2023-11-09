@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,6 +44,8 @@ namespace Jalgpall
             }
             else
             {
+                X = 40;
+                Y = 12.5;
                 _vx = 0;
                 _vy = 0;
             }

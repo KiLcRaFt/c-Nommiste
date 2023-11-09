@@ -137,10 +137,12 @@ namespace Naidis_Vorm
             ds.ReadXml(@"..\..\..\CustomersOrders.xml");
             DataGridView dataGrid = new DataGridView();
             dataGrid.Location = new Point(tree.Width+pb.Width, pb.Location.Y);
-            dataGrid.Height = 200;
-            dataGrid.Width = 300;
+            //dataGrid.Height = 200;
+            //dataGrid.Width = 300;
             dataGrid.DataSource = ds;
             dataGrid.AutoGenetareColumns=true;
+            
+            dataGrid.AutoSize = true;
             ds.Visible = false;
             
             dataGrid.DataMember = "Orders";
