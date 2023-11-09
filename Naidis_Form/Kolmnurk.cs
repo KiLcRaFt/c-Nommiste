@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Naidis_Form
 {
     public partial class Kolmnurk : Form
     {
         double side;
-        Button btn;
+        Button btn, btn2;
         Label lbl, lblA, lblB, lblC, lblH;
         TextBox txt, txtA, txtB, txtC, txtH;
         ListView lv;
@@ -14,8 +18,8 @@ namespace Naidis_Form
 
         public Kolmnurk()
         {
-            this.Width= 800;
-            this.Height = 800;
+            this.Width = 800;
+            this.Height = 600;
             this.Text = "Kolmnurk";
             side = 0;
 
@@ -31,7 +35,7 @@ namespace Naidis_Form
             lv = new ListView();
             lv.View = View.Details;
             lv.Size = new Size(400, 200);
-            lv.Location= new Point(lbl.Left + 10, lbl.Bottom + 5);
+            lv.Location = new Point(lbl.Left + 10, lbl.Bottom + 5);
 
             lv.Columns.Add("Andmed", 100);
             lv.Columns.Add("Value", 100);
@@ -42,8 +46,6 @@ namespace Naidis_Form
             lv.Items.Add("Olemas: ");
             lv.Items.Add("Perimeeter: ");
             lv.Items.Add("Ruut: ");
-            lv.Items.Add("Kõrgus Ruut: ");
-            lv.Items.Add("Kõrgus: ");
 
             this.Controls.Add(lv);
 
@@ -62,12 +64,9 @@ namespace Naidis_Form
             lblB.Location = new Point(lv.Left, lblA.Bottom + 2);
             lblC.Text = "Külg C:";
             lblC.Location = new Point(lv.Left, lblB.Bottom + 2);
-            lblH.Text = "Kõrgus a: ";
-            lblH.Location = new Point(lv.Left, lblC.Bottom + 2);
             this.Controls.Add(lblA);
             this.Controls.Add(lblB);
             this.Controls.Add(lblC);
-            this.Controls.Add(lblH);
 
             //Textbox
             txtA = new TextBox();
@@ -96,57 +95,32 @@ namespace Naidis_Form
             //PictureBox
             pb = new PictureBox();
             pb.Location = new Point(lv.Width + 50, lbl.Bottom + 10);
-            pb.Image = new Bitmap("../../../ravnobedr.png");
+            //pb.Image = new Bitmap("../../../Triangle.jpg");
             pb.Size = new Size(300, 300);
             pb.SizeMode = PictureBoxSizeMode.Zoom;
             pb.BorderStyle = BorderStyle.Fixed3D;
             this.Controls.Add(pb);
-
-            //RadioButton
-            rA = new RadioButton();
-            rA.Text = "Külg A";
-            rA.Location = new Point(lv.Left, lblH.Bottom + 10);
-            rA.CheckedChanged += new EventHandler(RadioButtons_Changed);
-            rB = new RadioButton();
-            rB.Text = "Külg B";
-            rB.Location = new Point(rA.Right, rA.Top);
-            rB.CheckedChanged += new EventHandler(RadioButtons_Changed);
-            rC = new RadioButton();
-            rC.Text = "Külg C";
-            rC.Location = new Point(rB.Right, rA.Top);
-            rC.CheckedChanged += new EventHandler(RadioButtons_Changed);
-
-            this.Controls.Add(rA);
-            this.Controls.Add(rB);
-            this.Controls.Add(rC);
+            //pb.Visible = false;
 
             //Button
             btn = new Button();
             btn.Size = new Size(100, 50);
-            btn.Location = new Point(lv.Width + 150 , pb.Bottom + 25);
-            btn.Text= "Ok";
+            btn.Location = new Point(lv.Width + 150, pb.Bottom + 25);
+            btn.Text = "Ok";
             btn.Click += Btn_Click;
             this.Controls.Add(btn);
+            btn2 = new Button();
+            btn2.Size = new Size(60, 25);
+            btn2.Location = new Point(btn.Right + 60, btn.Bottom + 50);
+            btn2.Text = "Uus vorm";
+            btn2.Click += Btn2_Click;
+            this.Controls.Add(btn2);
         }
 
-        private void RadioButtons_Changed(object? sender, EventArgs e)
+        private void Btn2_Click(object? sender, EventArgs e)
         {
-            
-            if (rA.Checked)
-            {
-                side = Convert.ToDouble(txtA.Text);
-
-            }
-            else if (rB.Checked)
-            {
-                side = Convert.ToDouble(txtB.Text);
-
-            }
-            else if(rC.Checked)
-            {
-                side = Convert.ToDouble(txtC.Text);
-
-            }
+            Kolmnurk2 form2 = new Kolmnurk2();
+            form2.Show();
         }
 
         private void Btn_Click(object? sender, EventArgs e)
@@ -159,8 +133,23 @@ namespace Naidis_Form
                 b = Convert.ToDouble(txtB.Text);
                 c = Convert.ToDouble(txtC.Text);
                 h = Convert.ToDouble(txtH.Text);
-                triangle = new Triangle();
+                triangle = new Triangle(a, b, c);
                 if (triangle.ExistTriangle(a, b, c) != true) { throw new Exception(); };
+                
+                if (a == b && b == c && c == a)
+                    {
+                        pb.Image = new Bitmap("../../../Triangle.jpg");
+                    };
+
+                if (a == b || b == c || c == a)
+                    {
+                        pb.Image = new Bitmap("../../../2sideTriangle.png");
+                    };
+
+                if (a != b && b != c && c != a)
+                {
+                    pb.Image = new Bitmap("../../../NoOneSideTriangle.png");
+                };
 
                 lv.Items[0].SubItems.Add(triangle.OutputA(a));
                 lv.Items[1].SubItems.Add(triangle.OutputB(b));
@@ -169,12 +158,10 @@ namespace Naidis_Form
                 lv.Items[3].SubItems.Add(Convert.ToString(triangle.ExistTriangle(a, b, c)));
                 lv.Items[4].SubItems.Add(Convert.ToString(triangle.Perimeter(a, b, c)));
                 lv.Items[5].SubItems.Add(Convert.ToString(triangle.Surface(a, b, c)));
-                lv.Items[6].SubItems.Add(Convert.ToString(triangle.SurfaceH(h, side)));
-                lv.Items[7].SubItems.Add(Convert.ToString(triangle.Height(a, b, c)));
             }
             catch (Exception)
             {
-                DialogResult result = MessageBox.Show("Proovi uuesti", "Viga");
+                DialogResult result = MessageBox.Show("Kolmnurka ei ole võimalik ehitada", "Viga");
             }
         }
     }
