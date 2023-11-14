@@ -18,40 +18,58 @@ namespace LaborForm
 
             Random rnd = new Random();
 
-            List<string> primers = new List<string>();
-            primers.Add("2+2=");
-            primers.Add("6-1=");
-            primers.Add("2*3=");
-            primers.Add("14/2=");
-            primers.Add("4+2*2=");
-            primers.Add("3+3+3=");
-            primers.Add("100-9*10=");
-            primers.Add("11*1=");
-            primers.Add("12/1=");
+            List<string> znaki = new List<string>();
+            znaki.Add("+");
+            znaki.Add("-");
+            znaki.Add("*");
+            znaki.Add("/");
 
-            List<string> answers = new List<string>();
-            answers.Add("4");
-            answers.Add("5");
-            answers.Add("6");
-            answers.Add("7");
-            answers.Add("8");
-            answers.Add("9");
-            answers.Add("10");
-            answers.Add("11");
-            answers.Add("12");
+            List<string> primers1 = new List<string>();
+            List<string> answers1 = new List<string>();
 
-            int ind1 = rnd.Next(0, answers.Count);
-            int ind2 = rnd.Next(0, answers.Count);
-            int ind3 = rnd.Next(0, answers.Count);
+            for (int i = 0; i < 12; i++)
+            {
+                int znak = rnd.Next(0, znaki.Count);
+
+                int x1 = rnd.Next(1, 40);
+                int x2 = rnd.Next(1, 40);
+                string answe = Convert.ToString(x1) + znaki[znak] + Convert.ToString(x2);
+                primers1.Add(answe);
+
+                if (znaki[znak] == "+")
+                {
+                    int ans = x1 + x2;
+                    answers1.Add(Convert.ToString(ans));
+                }
+                if (znaki[znak] == "-")
+                {
+                    int ans = x1 - x2;
+                    answers1.Add(Convert.ToString(ans));
+                }
+                if (znaki[znak] == "*")
+                {
+                    int ans = x1 * x2;
+                    answers1.Add(Convert.ToString(ans));
+                }
+                if (znaki[znak] == "/")
+                {
+                    double ans = x1 / x2;
+                    answers1.Add(Convert.ToString(ans));
+                }
+            }
+
+            int ind1 = rnd.Next(0, answers1.Count);
+            int ind2 = rnd.Next(0, answers1.Count);
+            int ind3 = rnd.Next(0, answers1.Count);
             while (true)
             {
                 if (ind2 == ind1 || ind2 == ind3)
                 {
-                    ind2 = rnd.Next(0, answers.Count);
+                    ind2 = rnd.Next(0, answers1.Count);
                 }
                 if (ind3 == ind1 || ind3 == ind2)
                 {
-                    ind3 = rnd.Next(0, answers.Count);
+                    ind3 = rnd.Next(0, answers1.Count);
                 }
                 else
                 {
@@ -63,7 +81,7 @@ namespace LaborForm
             LabelChoise labl = new LabelChoise();
             lbl1.AutoSize = true;
             lbl1.Font = new Font("Tahoma", 36);
-            labl.Labl(lbl1, answers[ind1], 250, 260);
+            labl.Labl(lbl1, answers1[ind1], 250, 260);
             labl.DragAnDrop();
             lbl1.MouseUp += Lbl1_MouseUp;
             this.Controls.Add(lbl1);
@@ -72,7 +90,7 @@ namespace LaborForm
             LabelChoise labl2 = new LabelChoise();
             lbl2.AutoSize = true;
             lbl2.Font = new Font("Tahoma", 36);
-            labl2.Labl(lbl2, answers[ind2], 250, 60);
+            labl2.Labl(lbl2, answers1[ind2], 250, 60);
             labl2.DragAnDrop();
             lbl2.MouseUp += Lbl2_MouseUp;
             this.Controls.Add(lbl2);
@@ -81,7 +99,7 @@ namespace LaborForm
             LabelChoise labl3 = new LabelChoise();
             lbl3.AutoSize = true;
             lbl3.Font = new Font("Tahoma", 36);
-            labl3.Labl(lbl3, answers[ind3], 250, 160);
+            labl3.Labl(lbl3, answers1[ind3], 250, 160);
             labl3.DragAnDrop();
             lbl3.MouseUp += Lbl3_MouseUp;
             this.Controls.Add(lbl3);
@@ -90,7 +108,7 @@ namespace LaborForm
             LabelChoise labl4 = new LabelChoise();
             lbl4.AutoSize = true;
             lbl4.Font = new Font("Tahoma", 36);
-            labl4.Labl(lbl4, primers[ind1], 60, 60);
+            labl4.Labl(lbl4, primers1[ind1], 60, 60);
             labl4.DragAnDrop();
             lbl4.MouseUp += Lbl1_MouseUp;
             this.Controls.Add(lbl4);
@@ -99,7 +117,7 @@ namespace LaborForm
             LabelChoise labl5 = new LabelChoise();
             lbl5.AutoSize = true;
             lbl5.Font = new Font("Tahoma", 36);
-            labl5.Labl(lbl5, primers[ind2], 60, 160);
+            labl5.Labl(lbl5, primers1[ind2], 60, 160);
             labl5.DragAnDrop();
             lbl5.MouseUp += Lbl2_MouseUp;
             this.Controls.Add(lbl5);
@@ -108,7 +126,7 @@ namespace LaborForm
             LabelChoise labl6 = new LabelChoise();
             lbl6.AutoSize = true;
             lbl6.Font = new Font("Tahoma", 36);
-            labl6.Labl(lbl6, primers[ind3], 60, 260);
+            labl6.Labl(lbl6, primers1[ind3], 60, 260);
             labl6.DragAnDrop();
             lbl6.MouseUp += Lbl3_MouseUp;
             this.Controls.Add(lbl6);
