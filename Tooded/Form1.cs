@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,11 @@ namespace Tooded
     {
         SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=Tooded_DB;Integrated Security=True");
 
+        //CREATE TABLE Kategooriatable(
+        //id int not null primary key identity(1,1),
+        //Kategooria_nimetus varchar (30),
+        //Kirjeldus varchar(100)
+        //);
 
         SqlDataAdapter adapter_toode, adapter_kategooria;
         SqlCommand command;
@@ -82,10 +88,7 @@ namespace Tooded
             DataTable table = new DataTable();
             adapter_toode = new SqlDataAdapter("SELECT T.Id, T.Toodenimetus, T.Kogus, T.Hind, T.Pilt, K.Kategooria_nimetus as Kategooria FROM Toodetabel as T INNER JOIN Kategooriatable as K on T.Kategooriad=K.Id", connect);
             adapter_toode.Fill(dt_toode);
-            table.Columns.Add("Toode");
-            table.Columns.Add("Kogus");
-            table.Columns.Add("Hind");
-            table.Columns.Add("Pilt");
+            dataGridView2.DataSource = dt_toode;
             DataGridViewComboBoxColumn combo_kat = new DataGridViewComboBoxColumn();
             foreach (DataRow item in dt_toode.Rows)
             {
@@ -94,11 +97,6 @@ namespace Tooded
                     combo_kat.Items.Add(item["Kategooria"]);
                 }
             }
-            foreach (DataRow item in dt_toode.Rows)
-            {
-                table.Rows.Add(item["Toodenimetus"], item["Kogus"], item["Hind"], item["Pilt"]);
-            }
-            dataGridView2.DataSource = table;
             dataGridView2.Columns.Add(combo_kat);
             connect.Close();
         }
@@ -155,24 +153,55 @@ namespace Tooded
             }
         }
 
-        private void KogusBox_TextChanged_1(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
+        { }
+        string kat;
+        SaveFileDialog save;
+        OpenFileDialog open;
+        
+        private void button2_Click(object sender, EventArgs e)
         {
+            open = new OpenFileDialog();
+            open.InitialDirectory = @"C:\Users\opilane\Pictures";
+            open.Multiselect= true;
+            open.Filter = "Images Files(*.jpeg, *.bmp, *.png, *.jpg)|*.jpeg; *.bmp; *.png; *.jpg";
+            open.ShowDialog();
 
+            //FileInfo open_info = new FileInfo(@"C:\Users\opilane\Pictures\"+open.FileName);
+            if (open.ShowDialog() == DialogResult.OK && ToodeBox.Text != null)
+            {
+                save = new SaveFileDialog();
+                save.InitialDirectory=Path.GetFullPath(@"..\..\Images");
+                save.FileName = ToodeBox.Text+Path.GetExtension(open.FileName);
+                save.Filter = "Images"+Path.GetExtension(open.FileName) + "|" + Path.GetExtension(open.FileName);
+                if (save.ShowDialog() == DialogResult.OK)
+                {
+                    File.Copy(open.FileName, save.FileName);
+                    Toode_pb.Image=Image.FromFile(save.FileName);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Viga");
+            }
         }
 
-        private void HindBox_TextChanged(object sender, EventArgs e)
+        private void DataGridView2_RowHeaderMouseClick1(object sender, DataGridViewCellMouseEventArgs e)
         {
+            Id = (int)dataGridView2.Rows[e.RowIndex].Cells["Id"].Value;
+            ToodeBox.Text = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
+            KogusBox.Text = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
+            HindBox.Text = dataGridView2.Rows[e.RowIndex].Cells[3].Value.ToString();
 
-        }
-
-        private void ToodeBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            try
+            {
+                Toode_pb.Image = Image.FromFile(@"..\..\Images" + dataGridView2.Rows[e.RowIndex].Cells[4].Value.ToString());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Pilt puudub");
+            }
+            Kat_Box.SelectedItem = dataGridView2.Rows[e.RowIndex].Cells[5].Value;
         }
     }
 }

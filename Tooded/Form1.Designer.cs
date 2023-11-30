@@ -45,7 +45,11 @@ namespace Tooded
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.ToodeBox = new System.Windows.Forms.TextBox();
+            this.Toode_pb = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Toode_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView2
@@ -55,6 +59,7 @@ namespace Tooded
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(647, 150);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.RowHeaderMouseClick += this.DataGridView2_RowHeaderMouseClick1;
             // 
             // Kat_Box
             // 
@@ -108,21 +113,12 @@ namespace Tooded
             this.Hind_lb.Size = new System.Drawing.Size(100, 23);
             this.Hind_lb.TabIndex = 14;
             // 
-            // ToodeBox
-            // 
-            this.ToodeBox.Location = new System.Drawing.Point(85, 20);
-            this.ToodeBox.Name = "ToodeBox";
-            this.ToodeBox.Size = new System.Drawing.Size(100, 20);
-            this.ToodeBox.TabIndex = 13;
-            this.ToodeBox.TextChanged += new System.EventHandler(this.ToodeBox_TextChanged);
-            // 
             // HindBox
             // 
             this.HindBox.Location = new System.Drawing.Point(85, 72);
             this.HindBox.Name = "HindBox";
             this.HindBox.Size = new System.Drawing.Size(100, 20);
             this.HindBox.TabIndex = 12;
-            this.HindBox.TextChanged += new System.EventHandler(this.HindBox_TextChanged);
             // 
             // KogusBox
             // 
@@ -130,7 +126,6 @@ namespace Tooded
             this.KogusBox.Name = "KogusBox";
             this.KogusBox.Size = new System.Drawing.Size(100, 20);
             this.KogusBox.TabIndex = 11;
-            this.KogusBox.TextChanged += new System.EventHandler(this.KogusBox_TextChanged_1);
             // 
             // Kustuta_btn
             // 
@@ -183,9 +178,47 @@ namespace Tooded
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // ToodeBox
+            // 
+            this.ToodeBox.Location = new System.Drawing.Point(85, 20);
+            this.ToodeBox.Name = "ToodeBox";
+            this.ToodeBox.Size = new System.Drawing.Size(100, 20);
+            this.ToodeBox.TabIndex = 13;
+            // 
+            // Toode_pb
+            // 
+            this.Toode_pb.Location = new System.Drawing.Point(276, 12);
+            this.Toode_pb.Name = "Toode_pb";
+            this.Toode_pb.Size = new System.Drawing.Size(253, 205);
+            this.Toode_pb.TabIndex = 21;
+            this.Toode_pb.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(536, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(56, 27);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "Oste faili";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(536, 193);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(56, 24);
+            this.button3.TabIndex = 23;
+            this.button3.Text = "Kustuta";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(671, 387);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Toode_pb);
             this.Controls.Add(this.ToodeBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
@@ -202,12 +235,14 @@ namespace Tooded
             this.Controls.Add(this.Kat_Box);
             this.Controls.Add(this.dataGridView2);
             this.Name = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Toode_pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+       
 
         #endregion
 
@@ -227,6 +262,9 @@ namespace Tooded
         private Label label4;
         private Button button1;
         private TextBox ToodeBox;
+        private PictureBox Toode_pb;
+        private Button button2;
+        private Button button3;
     }
 }
 
