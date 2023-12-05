@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Tooded
 {
@@ -88,16 +89,24 @@ namespace Tooded
             DataTable table = new DataTable();
             adapter_toode = new SqlDataAdapter("SELECT T.Id, T.Toodenimetus, T.Kogus, T.Hind, T.Pilt, K.Kategooria_nimetus as Kategooria FROM Toodetabel as T INNER JOIN Kategooriatable as K on T.Kategooriad=K.Id", connect);
             adapter_toode.Fill(dt_toode);
+            dataGridView2.Columns.Clear();
             dataGridView2.DataSource = dt_toode;
             DataGridViewComboBoxColumn combo_kat = new DataGridViewComboBoxColumn();
+            combo_kat.HeaderText = "Kategooria";
+            combo_kat.Name = "KategooriaColumn";
+            combo_kat.DataPropertyName = "Kategooria";
+            HashSet<string> uniqueCategories = new HashSet<string>();
             foreach (DataRow item in dt_toode.Rows)
             {
-                if (!combo_kat.Items.Contains(item["Kategooria"]))
+                string category = item["Kategooria_nimetus"].ToString();
+                if (!uniqueCategories.Contains(category))
                 {
-                    combo_kat.Items.Add(item["Kategooria"]);
+                    uniqueCategories.Add(category);
+                    combo_kat.Items.Add(category);
                 }
             }
             dataGridView2.Columns.Add(combo_kat);
+            dataGridView2.Columns["Kategooria_nimetus"].Visible = false;
             connect.Close();
         }
 
@@ -162,22 +171,22 @@ namespace Tooded
         private void button2_Click(object sender, EventArgs e)
         {
             open = new OpenFileDialog();
-            open.InitialDirectory = @"C:\Users\opilane\Pictures";
-            open.Multiselect= true;
+            open.InitialDirectory = @"C:\\Users\\opilane\\Pictures";
+            open.Multiselect = true;
             open.Filter = "Images Files(*.jpeg, *.bmp, *.png, *.jpg)|*.jpeg; *.bmp; *.png; *.jpg";
-            open.ShowDialog();
 
-            //FileInfo open_info = new FileInfo(@"C:\Users\opilane\Pictures\"+open.FileName);
+
+            FileInfo open_info = new FileInfo(@"C:\\Users\\opilane\\Pictures" + open.FileName);
             if (open.ShowDialog() == DialogResult.OK && ToodeBox.Text != null)
             {
-                save = new SaveFileDialog();
-                save.InitialDirectory=Path.GetFullPath(@"..\..\Images");
-                save.FileName = ToodeBox.Text+Path.GetExtension(open.FileName);
-                save.Filter = "Images"+Path.GetExtension(open.FileName) + "|" + Path.GetExtension(open.FileName);
-                if (save.ShowDialog() == DialogResult.OK)
+                SaveFileDialog save = new SaveFileDialog();
+                save.InitialDirectory = Path.GetFullPath(@"..\..\..\Images");
+                save.FileName = ToodeBox.Text + Path.GetExtension(open.FileName);
+                save.Filter = "Images" + Path.GetExtension(open.FileName) + "|" + Path.GetExtension(open.FileName);
+                if (save.ShowDialog() == DialogResult.OK && ToodeBox.Text != null)
                 {
                     File.Copy(open.FileName, save.FileName);
-                    Toode_pb.Image=Image.FromFile(save.FileName);
+                    Toode_pb.Image = Image.FromFile(save.FileName);
                 }
             }
             else
@@ -189,17 +198,17 @@ namespace Tooded
         private void DataGridView2_RowHeaderMouseClick1(object sender, DataGridViewCellMouseEventArgs e)
         {
             Id = (int)dataGridView2.Rows[e.RowIndex].Cells["Id"].Value;
-            ToodeBox.Text = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
-            KogusBox.Text = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
-            HindBox.Text = dataGridView2.Rows[e.RowIndex].Cells[3].Value.ToString();
+            ToodeBox.Text = dataGridView2.Rows[e.RowIndex].Cells["Toodenimetus"].Value.ToString();
+            KogusBox.Text = dataGridView2.Rows[e.RowIndex].Cells["Kogus"].Value.ToString();
+            HindBox.Text = dataGridView2.Rows[e.RowIndex].Cells["Hind"].Value.ToString();
 
             try
             {
-                Toode_pb.Image = Image.FromFile(@"..\..\Images" + dataGridView2.Rows[e.RowIndex].Cells[4].Value.ToString());
+                Toode_pb.Image = Image.FromFile(Path.Combine(Path.GetFullPath(@"..\..\..\..\..\..\Pictures"), dataGridView2.Rows[e.RowIndex].Cells["Pilt"].Value.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Pilt puudub");
+                MessageBox.Show("Pilt puudub" + ex.Message);
             }
             Kat_Box.SelectedItem = dataGridView2.Rows[e.RowIndex].Cells[5].Value;
         }
