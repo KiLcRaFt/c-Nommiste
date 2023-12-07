@@ -98,7 +98,7 @@ namespace Tooded
             HashSet<string> uniqueCategories = new HashSet<string>();
             foreach (DataRow item in dt_toode.Rows)
             {
-                string category = item["Kategooria_nimetus"].ToString();
+                string category = item["Kategooria"].ToString();
                 if (!uniqueCategories.Contains(category))
                 {
                     uniqueCategories.Add(category);
@@ -106,7 +106,7 @@ namespace Tooded
                 }
             }
             dataGridView2.Columns.Add(combo_kat);
-            dataGridView2.Columns["Kategooria_nimetus"].Visible = false;
+            dataGridView2.Columns["Kategooria"].Visible = false;
             connect.Close();
         }
 
@@ -164,8 +164,8 @@ namespace Tooded
 
         private void button3_Click(object sender, EventArgs e)
         { }
-        string kat;
-        SaveFileDialog save;
+        //string kat;
+        //SaveFileDialog save;
         OpenFileDialog open;
         
         private void button2_Click(object sender, EventArgs e)
@@ -180,7 +180,7 @@ namespace Tooded
             if (open.ShowDialog() == DialogResult.OK && ToodeBox.Text != null)
             {
                 SaveFileDialog save = new SaveFileDialog();
-                save.InitialDirectory = Path.GetFullPath(@"..\..\..\Images");
+                save.InitialDirectory = Path.GetFullPath(@"..\..\Images");
                 save.FileName = ToodeBox.Text + Path.GetExtension(open.FileName);
                 save.Filter = "Images" + Path.GetExtension(open.FileName) + "|" + Path.GetExtension(open.FileName);
                 if (save.ShowDialog() == DialogResult.OK && ToodeBox.Text != null)
@@ -204,7 +204,8 @@ namespace Tooded
 
             try
             {
-                Toode_pb.Image = Image.FromFile(Path.Combine(Path.GetFullPath(@"..\..\..\..\..\..\Pictures"), dataGridView2.Rows[e.RowIndex].Cells["Pilt"].Value.ToString());
+                Toode_pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                Toode_pb.Image = Image.FromFile(Path.Combine(Path.GetFullPath(@"..\..\Images"), dataGridView2.Rows[e.RowIndex].Cells["Pilt"].Value.ToString()));
             }
             catch (Exception ex)
             {
