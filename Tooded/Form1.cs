@@ -215,3 +215,19 @@ namespace Tooded
         }
     }
 }
+
+//create table Kategooriatable(
+//Id int not null primary key identity(1,1),
+//Kategooria_nimetus varchar(100),
+//Kirjandus text
+//);
+
+//create table Toodetabel(
+//Id int not null primary key identity(1,1),
+//Toodenimetus varchar(100),
+//Kogus int,
+//Hind int,
+//Pilt text,
+//Kategooriad int,
+//foreign key (Kategooriad) references Kategooriatable(Id)
+//);
