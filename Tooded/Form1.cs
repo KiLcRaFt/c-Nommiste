@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Deployment.Internal;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -163,7 +164,16 @@ namespace Tooded
         }
 
         private void button3_Click(object sender, EventArgs e)
-        { }
+        {
+            //int id = dataGridView2.SelectedRows[]; 
+
+            //command = new SqlCommand("DELETE FROM Toodetabel WHERE Id = @id", connect);
+            //connect.Open();
+            //command.Parameters.AddWithValue("@id", id);
+            //command.ExecuteNonQuery();
+            //connect.Close();
+            //Kat_Box.Items.Clear();
+        }
         //string kat;
         //SaveFileDialog save;
         OpenFileDialog open;
