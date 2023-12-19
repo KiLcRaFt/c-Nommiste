@@ -165,14 +165,18 @@ namespace Tooded
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //int id = dataGridView2.SelectedRows[]; 
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["Id"].Value);
 
-            //command = new SqlCommand("DELETE FROM Toodetabel WHERE Id = @id", connect);
-            //connect.Open();
-            //command.Parameters.AddWithValue("@id", id);
-            //command.ExecuteNonQuery();
-            //connect.Close();
-            //Kat_Box.Items.Clear();
+                connect.Open();
+                command = new SqlCommand("DELETE FROM Toodetabel WHERE Id = @id", connect);
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+                connect.Close();
+                Kat_Box.Items.Clear();
+                NaitaAndmed();
+            }
         }
         //string kat;
         //SaveFileDialog save;
