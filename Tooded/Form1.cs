@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Deployment.Internal;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Tooded
 {
@@ -37,7 +30,7 @@ namespace Tooded
         private void Lisa_Kat_Click_1(object sender, EventArgs e)
         {
             bool on = false;
-            foreach(var item in Kat_Box.Items)
+            foreach (var item in Kat_Box.Items)
             {
                 if (item.ToString() == Kat_Box.Text)
                 {
@@ -86,9 +79,9 @@ namespace Tooded
         public void NaitaAndmed()
         {
             connect.Open();
-            ComboBox comboBox = new ComboBox();
+            //ComboBox comboBox = new ComboBox();
             DataTable dt_toode = new DataTable();
-            DataTable table = new DataTable();
+            //DataTable table = new DataTable();
             adapter_toode = new SqlDataAdapter("SELECT T.Id, T.Toodenimetus, T.Kogus, T.Hind, T.Pilt, K.Kategooria_nimetus as Kategooria FROM Toodetabel as T INNER JOIN Kategooriatable as K on T.Kategooriad=K.Id", connect);
             adapter_toode.Fill(dt_toode);
             dataGridView2.Columns.Clear();
@@ -114,7 +107,7 @@ namespace Tooded
 
         private void KustutaKat_Click(object sender, EventArgs e)
         {
-            if(Kat_Box.SelectedItem != null)
+            if (Kat_Box.SelectedItem != null)
             {
                 string val_kat = Kat_Box.SelectedItem.ToString();
 
@@ -131,7 +124,7 @@ namespace Tooded
         int Id = 0;
         private void button1_Click(object sender, EventArgs e)
         {
-            if(ToodeBox.Text.Trim()!=string.Empty && KogusBox.Text.Trim()!=string.Empty&&HindBox.Text.Trim()!=string.Empty && Kat_Box.SelectedItem != null)
+            if (ToodeBox.Text.Trim() != string.Empty && KogusBox.Text.Trim() != string.Empty && HindBox.Text.Trim() != string.Empty && Kat_Box.SelectedItem != null)
             {
                 try
                 {
@@ -148,7 +141,7 @@ namespace Tooded
                     command.Parameters.AddWithValue("@hind", HindBox.Text);
                     command.Parameters.AddWithValue("@pilt", ToodeBox.Text + ".jpg");
                     command.Parameters.AddWithValue("@kat", Id);
-                    
+
                     command.ExecuteNonQuery();
                     connect.Close();
                     NaitaAndmed();
@@ -182,7 +175,7 @@ namespace Tooded
         //string kat;
         //SaveFileDialog save;
         OpenFileDialog open;
-        
+
         private void button2_Click(object sender, EventArgs e)
         {
             open = new OpenFileDialog();
@@ -222,7 +215,6 @@ namespace Tooded
             ToodeBox.Text = dataGridView2.Rows[e.RowIndex].Cells["Toodenimetus"].Value.ToString();
             KogusBox.Text = dataGridView2.Rows[e.RowIndex].Cells["Kogus"].Value.ToString();
             HindBox.Text = dataGridView2.Rows[e.RowIndex].Cells["Hind"].Value.ToString();
-
             try
             {
                 Toode_pb.SizeMode = PictureBoxSizeMode.StretchImage;

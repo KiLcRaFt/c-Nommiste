@@ -58,8 +58,10 @@ namespace Tooded
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(12, 225);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dataGridView2.Size = new System.Drawing.Size(647, 150);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.RowHeaderMouseClick += DataGridView2_RowHeaderMouseClick1;
             // 
             // Kat_Box
             // 
@@ -253,11 +255,14 @@ namespace Tooded
 
         }
 
-       
+        private void DataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.ComboBox Kat_Box;
         private System.Windows.Forms.Label label1;

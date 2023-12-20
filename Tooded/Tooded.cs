@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Tooded
 {
@@ -10,10 +6,10 @@ namespace Tooded
     {
         public int Id { get; set; }
         public string Toodenimetus { get; set; }
-        public int Kogus {get; set;}
-        public float Hind { get; set;}
-        public string Pilt{ get; set;}
-        public IEnumerable<Kategooria> Kategooriad { get; set;}
+        public int Kogus { get; set; }
+        public float Hind { get; set; }
+        public string Pilt { get; set; }
+        public IEnumerable<Kategooria> Kategooriad { get; set; }
     }
     public class Kategooria
     {

@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Tooded
 {
     public partial class Login : Form
     {
-        
+
         SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=Tooded_DB;Integrated Security=True");
 
         SqlDataAdapter adapter_toode, adapter_kategooria;
@@ -31,7 +23,7 @@ namespace Tooded
             string pass = txtbPass.Text.Trim();
 
             SqlCommand command = new SqlCommand("SELECT * FROM Kasutajad WHERE nimi = @log AND pass = @pass", connect);
-            
+
             command.Parameters.AddWithValue("@log", log);
             command.Parameters.AddWithValue("@pass", pass);
 
@@ -73,7 +65,7 @@ namespace Tooded
             }
 
             connect.Close();
-            
+
         }
 
     }
