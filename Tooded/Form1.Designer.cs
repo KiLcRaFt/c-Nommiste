@@ -48,6 +48,7 @@ namespace Tooded
             this.Toode_pb = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.btnKassa = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Toode_pb)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +60,6 @@ namespace Tooded
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(647, 150);
             this.dataGridView2.TabIndex = 0;
-            this.dataGridView2.RowHeaderMouseClick += this.DataGridView2_RowHeaderMouseClick1;
             // 
             // Kat_Box
             // 
@@ -213,9 +213,20 @@ namespace Tooded
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // btnKassa
+            // 
+            this.btnKassa.Location = new System.Drawing.Point(603, 12);
+            this.btnKassa.Name = "btnKassa";
+            this.btnKassa.Size = new System.Drawing.Size(56, 27);
+            this.btnKassa.TabIndex = 24;
+            this.btnKassa.Text = "Kassa";
+            this.btnKassa.UseVisualStyleBackColor = true;
+            this.btnKassa.Click += new System.EventHandler(this.btnKassa_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(671, 387);
+            this.Controls.Add(this.btnKassa);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Toode_pb);
@@ -265,6 +276,7 @@ namespace Tooded
         private PictureBox Toode_pb;
         private Button button2;
         private Button button3;
+        private Button btnKassa;
     }
 }
 

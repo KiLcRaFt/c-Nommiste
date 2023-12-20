@@ -7,6 +7,7 @@ using System.Deployment.Internal;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -209,6 +210,12 @@ namespace Tooded
             }
         }
 
+        private void btnKassa_Click(object sender, EventArgs e)
+        {
+            var Kassa = new Kassa();
+            Kassa.ShowDialog();
+        }
+
         private void DataGridView2_RowHeaderMouseClick1(object sender, DataGridViewCellMouseEventArgs e)
         {
             Id = (int)dataGridView2.Rows[e.RowIndex].Cells["Id"].Value;
@@ -244,4 +251,11 @@ namespace Tooded
 //Pilt text,
 //Kategooriad int,
 //foreign key (Kategooriad) references Kategooriatable(Id)
+//);
+
+//create table Kasutajad(
+//	Id int primary key identity(1,1) not null,
+//	nimi varchar(30),
+//	pass varchar(30),
+//	identify varchar(10)
 //);
