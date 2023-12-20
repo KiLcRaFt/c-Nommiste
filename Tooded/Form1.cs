@@ -255,7 +255,7 @@ namespace Tooded
 
 //create table Kasutajad(
 //	Id int primary key identity(1,1) not null,
-//	nimi varchar(30),
-//	pass varchar(30),
-//	identify varchar(10)
+//    nimi varchar(30),
+//    pass varchar(30),
+//    identify varchar(10)
 //);
