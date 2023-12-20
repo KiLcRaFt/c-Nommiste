@@ -32,65 +32,30 @@ namespace Tooded
 
         private void txtOtsi_TextChanged(object sender, EventArgs e)
         {
-            if (dt_toode != null)
-            {
-                DataView dv = dt_toode.DefaultView;
-                dv.RowFilter = $"Toodenimetus LIKE '{txtOtsi.Text}%'";
+            //if (dt_toode != null)
+            //{
+            //    DataView dv = dt_toode.DefaultView;
+            //    dv.RowFilter = $"Toodenimetus LIKE '{txtOtsi.Text}%'";
 
-                dataGridView1.DataSource = dv;
-                dataGridView1.ClearSelection();
+            //    dataGridView1.DataSource = dv;
+            //    dataGridView1.ClearSelection();
 
-                // Select the first matching row, if any
-                if (dataGridView1.Rows.Count > 0)
-                {
-                    dataGridView1.Rows[0].Selected = true;
-                    dataGridView1.FirstDisplayedScrollingRowIndex = 0; // Scroll to the selected row
-                }
+            //    // Select the first matching row, if any
+            //    if (dataGridView1.Rows.Count > 0)
+            //    {
+            //        dataGridView1.Rows[0].Selected = true;
+            //        dataGridView1.FirstDisplayedScrollingRowIndex = 0; // Scroll to the selected row
+            //    }
 
-                dataGridView1.Refresh();
-            }
+            //    dataGridView1.Refresh();
+            //}
         }
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            //if (dataGridView1.SelectedRows.Count > 0)
-            //{
-            //    string nimetus = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Toodenimetus"].Value);
-            //    string hind = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Hind"].Value);
-
-            //    // Assuming the listBox displays the items as strings
-            //    string listBoxItem = $"{nimetus} {kogus} {hind} {kogus * Convert.ToInt32(hind)}";
-
-            //    if (listBox.Items.Contains(listBoxItem))
-            //    {
-            //        kogus++;
-            //    }
-
-            //if (Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Kogus"].Value) > 0)
-            //{
-
-            //    connect.Open();
-            //    command = new SqlCommand("UPDATE Toodetabel SET Kogus = Kogus - 1 WHERE Toodenimetus = @nimetus;", connect);
-            //    command.Parameters.AddWithValue("@nimetus", nimetus);
-            //    command.ExecuteNonQuery();
-            //    connect.Close();
-            //    NaitaAndmed();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Kahjuks, toode on juba otsas.");
-            //}
-            //    listBox.Items.Add(listBoxItem);
-            //    NaitaAndmed();
-            //}
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 string nimetus = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Toodenimetus"].Value);
-                decimal hind = Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells["Hind"].Value);
 
-                // Find the ListItem in the ListBox
-                ToodeItems toode = listBox.Items.Cast<ToodeItems>().FirstOrDefault(item => item.Nimetus == nimetus);
-
-               
                 if (Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Kogus"].Value) > 0)
                 {
 
@@ -99,24 +64,8 @@ namespace Tooded
                     command.Parameters.AddWithValue("@nimetus", nimetus);
                     command.ExecuteNonQuery();
                     connect.Close();
+                    listBox.Items.Add(nimetus);
                     NaitaAndmed();
-                    if (toode != null)
-                    {
-                        // If the ListItem is found, increment its quantity
-                        toode.Kogus++;
-                    }
-                    else
-                    {
-                        // If the ListItem is not found, create a new ListItem and add it to the ListBox
-                        ToodeItems notoode = new ToodeItems(nimetus, 1, hind);
-                        listBox.Items.Add(notoode);
-                    }
-
-                    //listBox.Items.Clear();
-                    //foreach (toode in listBox.Items)
-                    //{
-                    //    listBox.Items.Add(toode);
-                    //}
                 }
                 else
                 {
