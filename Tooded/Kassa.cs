@@ -22,7 +22,7 @@ namespace Tooded
         public Kassa()
         {
             InitializeComponent();
-            NaitaAndmed();
+            Indenity();
         }
 
         private void btnOtsi_Click(object sender, EventArgs e)
@@ -40,11 +40,10 @@ namespace Tooded
             //    dataGridView1.DataSource = dv;
             //    dataGridView1.ClearSelection();
 
-            //    // Select the first matching row, if any
             //    if (dataGridView1.Rows.Count > 0)
             //    {
             //        dataGridView1.Rows[0].Selected = true;
-            //        dataGridView1.FirstDisplayedScrollingRowIndex = 0; // Scroll to the selected row
+            //        dataGridView1.FirstDisplayedScrollingRowIndex = 0;
             //    }
 
             //    dataGridView1.Refresh();
@@ -106,6 +105,68 @@ namespace Tooded
 
             MessageBox.Show("Pdf fail oli salvestatud! Nimi on "+name+".pdf");
 
+        }
+
+        public void Indenity()
+        {
+
+            SqlCommand command = new SqlCommand("SELECT * FROM Kasutajad", connect);
+
+            connect.Open();
+
+            SqlDataReader read = command.ExecuteReader();
+            {
+                if (read.HasRows)
+                {
+                    while (read.Read())
+                    {
+                        int identifyColumnIndex = read.GetOrdinal("identify");
+
+                        if (!read.IsDBNull(identifyColumnIndex) && String.Equals(read.GetString(identifyColumnIndex), "Omanik", StringComparison.OrdinalIgnoreCase))
+                        {
+                            connect.Close();
+                            NaitaAndmed();
+                            return;
+                        }
+                        else if (!read.IsDBNull(identifyColumnIndex) && read.GetString(identifyColumnIndex) == "Müüja")
+                        {
+                            connect.Close();
+                            NaitaAndmed();
+                            return;
+                        }
+                        else if (!read.IsDBNull(identifyColumnIndex) && read.GetString(identifyColumnIndex) == "Klient")
+                        {
+                            connect.Close();
+                            NaitaAndmedKlient();
+                            return;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Viga! Teil ei ole piisavalt õigusi.");
+                        }
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("Viga! Admebaasis ei ole seda kasutaja.");
+                }
+            }
+
+            connect.Close();
+        }
+
+        public void NaitaAndmedKlient()
+        {
+            connect.Open();
+            DataTable dt_toode = new DataTable();
+            adapter_toode = new SqlDataAdapter("SELECT T.Toodenimetus, K.Kategooria_nimetus as Kategooria FROM Toodetabel as T INNER JOIN Kategooriatable as K on T.Kategooriad=K.Id", connect);
+            dataGridView1.AutoResizeColumns();
+            adapter_toode.Fill(dt_toode);
+            dataGridView1.Columns.Clear();
+            dataGridView1.DataSource = dt_toode;
+
+            connect.Close();
         }
 
         public void NaitaAndmed()

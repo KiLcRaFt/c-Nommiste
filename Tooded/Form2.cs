@@ -17,6 +17,13 @@ namespace Tooded
             InitializeComponent();
         }
 
+        private void btnReg_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var reg = new Registration();
+            reg.ShowDialog();
+        }
+
         private void btnLog_Click(object sender, EventArgs e)
         {
             string log = txtbLog.Text.Trim();
@@ -45,6 +52,13 @@ namespace Tooded
                             return;
                         }
                         else if (read.GetString(identifyColumnIndex) == "Müüja")
+                        {
+                            this.Hide();
+                            var Kassa = new Kassa();
+                            Kassa.ShowDialog();
+                            return;
+                        }
+                        else if (read.GetString(identifyColumnIndex) == "Klient")
                         {
                             this.Hide();
                             var Kassa = new Kassa();

@@ -1,22 +1,18 @@
-﻿using System;
+﻿using Org.BouncyCastle.Utilities.Collections;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Tooded
 {
     public partial class Form1 : Form
     {
         SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=Tooded_DB;Integrated Security=True");
-
-        //CREATE TABLE Kategooriatable(
-        //id int not null primary key identity(1,1),
-        //Kategooria_nimetus varchar (30),
-        //Kirjeldus varchar(100)
-        //);
 
         SqlDataAdapter adapter_toode, adapter_kategooria;
         SqlCommand command;
@@ -249,5 +245,11 @@ namespace Tooded
 //	Id int primary key identity(1,1) not null,
 //    nimi varchar(30),
 //    pass varchar(30),
+//	email varchar(30),
 //    identify varchar(10)
 //);
+
+//insert into Kasutajad(nimi, pass, identify)
+//values('admin', 'admin', 'Omanik');
+//insert into Kasutajad(nimi, pass, identify)
+//values('test', 'test', 'Müüja');

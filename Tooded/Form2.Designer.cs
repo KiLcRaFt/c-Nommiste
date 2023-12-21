@@ -32,6 +32,7 @@
             this.txtbLog = new System.Windows.Forms.TextBox();
             this.txtbPass = new System.Windows.Forms.TextBox();
             this.btnLog = new System.Windows.Forms.Button();
+            this.btnReg = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -67,15 +68,26 @@
             this.btnLog.Name = "btnLog";
             this.btnLog.Size = new System.Drawing.Size(62, 21);
             this.btnLog.TabIndex = 3;
-            this.btnLog.Text = "Enter";
+            this.btnLog.Text = "Log in";
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            // 
+            // btnReg
+            // 
+            this.btnReg.Location = new System.Drawing.Point(92, 237);
+            this.btnReg.Name = "btnReg";
+            this.btnReg.Size = new System.Drawing.Size(93, 21);
+            this.btnReg.TabIndex = 4;
+            this.btnReg.Text = "Registreerimine";
+            this.btnReg.UseVisualStyleBackColor = true;
+            this.btnReg.Click += new System.EventHandler(this.btnReg_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 313);
+            this.Controls.Add(this.btnReg);
             this.Controls.Add(this.btnLog);
             this.Controls.Add(this.txtbPass);
             this.Controls.Add(this.txtbLog);
@@ -94,5 +106,6 @@
         private System.Windows.Forms.TextBox txtbLog;
         private System.Windows.Forms.TextBox txtbPass;
         private System.Windows.Forms.Button btnLog;
+        private System.Windows.Forms.Button btnReg;
     }
 }
