@@ -8,6 +8,7 @@ namespace VMC.Models
 {
     public class guest
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Sisesta nimi")]
         public string Name { get; set; }
 
