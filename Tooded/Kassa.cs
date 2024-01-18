@@ -27,35 +27,12 @@ namespace Tooded
             Indenity();
         }
 
-        private void btnOtsi_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtOtsi_TextChanged(object sender, EventArgs e)
-        {
-            //if (dt_toode != null)
-            //{
-            //    DataView dv = dt_toode.DefaultView;
-            //    dv.RowFilter = $"Toodenimetus LIKE '{txtOtsi.Text}%'";
-
-            //    dataGridView1.DataSource = dv;
-            //    dataGridView1.ClearSelection();
-
-            //    if (dataGridView1.Rows.Count > 0)
-            //    {
-            //        dataGridView1.Rows[0].Selected = true;
-            //        dataGridView1.FirstDisplayedScrollingRowIndex = 0;
-            //    }
-
-            //    dataGridView1.Refresh();
-            //}
-        }
         private void btnPlus_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 string nimetus = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Toodenimetus"].Value);
+                string Kokku = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Hind"].Value);
 
                 if (Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Kogus"].Value) > 0)
                 {
@@ -65,7 +42,7 @@ namespace Tooded
                     command.Parameters.AddWithValue("@nimetus", nimetus);
                     command.ExecuteNonQuery();
                     connect.Close();
-                    listBox.Items.Add(nimetus);
+                    listBox.Items.Add(nimetus+" "+Kokku);
                     NaitaAndmed();
                 }
                 else
@@ -80,6 +57,7 @@ namespace Tooded
             if (listBox.SelectedItem != null)
             {
                 string nimetus = listBox.SelectedItem.ToString();
+
                 connect.Open();
                 command = new SqlCommand("UPDATE Toodetabel SET Kogus = Kogus + 1 WHERE Toodenimetus = @nimetus;", connect);
                 command.Parameters.AddWithValue("@nimetus", nimetus);
@@ -92,13 +70,19 @@ namespace Tooded
 
         private void btnSalv_Click(object sender, EventArgs e)
         {
+            int kokku = 0;
             document = new Document();//using Aspose.Pdf
             var page = document.Pages.Add();
-            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Toode  Hind  Kogus Kokku"));
+            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Toode Hind"));
             foreach (string Products in listBox.Items)
             {
-                page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment(Products));
+                string[] nime = Products.Split(' ');
+                page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment(nime[0] +" " + nime[1]+" euro"));
+                kokku += Convert.ToInt32(nime[1]);
             }
+
+            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("========================"));
+            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Kokku on "+kokku+" euro"));
 
             Random rnd = new Random();
             string name = Convert.ToString(rnd.Next(20000));
@@ -200,7 +184,7 @@ namespace Tooded
             connect.Close();
         }
 
-        private void DataGridView1_RowHeaderMouseClick1(object sender, DataGridViewCellMouseEventArgs e)
+        private void DataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {

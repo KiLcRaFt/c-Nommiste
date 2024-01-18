@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtOtsi = new System.Windows.Forms.TextBox();
             this.listBox = new System.Windows.Forms.ListBox();
             this.btnPlus = new System.Windows.Forms.Button();
             this.btnKustuta = new System.Windows.Forms.Button();
             this.btnSalv = new System.Windows.Forms.Button();
-            this.btnOtsi = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -47,14 +45,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(466, 158);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // txtOtsi
-            // 
-            this.txtOtsi.Location = new System.Drawing.Point(340, 243);
-            this.txtOtsi.Name = "txtOtsi";
-            this.txtOtsi.Size = new System.Drawing.Size(87, 20);
-            this.txtOtsi.TabIndex = 1;
-            this.txtOtsi.TextChanged += new System.EventHandler(this.txtOtsi_TextChanged);
             // 
             // listBox
             // 
@@ -94,21 +84,11 @@
             this.btnSalv.UseVisualStyleBackColor = true;
             this.btnSalv.Click += new System.EventHandler(this.btnSalv_Click);
             // 
-            // btnOtsi
-            // 
-            this.btnOtsi.Location = new System.Drawing.Point(434, 243);
-            this.btnOtsi.Name = "btnOtsi";
-            this.btnOtsi.Size = new System.Drawing.Size(36, 20);
-            this.btnOtsi.TabIndex = 6;
-            this.btnOtsi.Text = "Otsi";
-            this.btnOtsi.UseVisualStyleBackColor = true;
-            this.btnOtsi.Click += new System.EventHandler(this.btnOtsi_Click);
-            // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(312, 104);
+            this.pictureBox1.Location = new System.Drawing.Point(286, 45);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(184, 161);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
@@ -118,36 +98,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 440);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btnOtsi);
             this.Controls.Add(this.btnSalv);
             this.Controls.Add(this.btnKustuta);
             this.Controls.Add(this.btnPlus);
             this.Controls.Add(this.listBox);
-            this.Controls.Add(this.txtOtsi);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Kassa";
             this.Text = "Kassa";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
-        }
-
-        private void DataGridView1_RowHeaderMouseClick(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtOtsi;
         private System.Windows.Forms.ListBox listBox;
         private System.Windows.Forms.Button btnPlus;
         private System.Windows.Forms.Button btnKustuta;
         private System.Windows.Forms.Button btnSalv;
-        private System.Windows.Forms.Button btnOtsi;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -12,6 +12,7 @@ namespace Tooded
 {
     public partial class Form1 : Form
     {
+        
         SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=Tooded_DB;Integrated Security=True");
 
         SqlDataAdapter adapter_toode, adapter_kategooria;
@@ -205,7 +206,13 @@ namespace Tooded
             Kassa.ShowDialog();
         }
 
-        private void DataGridView2_RowHeaderMouseClick1(object sender, DataGridViewCellMouseEventArgs e)
+        private void admin_btn_Click(object sender, EventArgs e)
+        {
+            var Kliendid = new AdminPanel();
+            Kliendid.ShowDialog();
+        }
+
+        private void DataGridView2_RowHeaderMouseClick2(object sender, DataGridViewCellMouseEventArgs e)
         {
             Id = (int)dataGridView2.Rows[e.RowIndex].Cells["Id"].Value;
             ToodeBox.Text = dataGridView2.Rows[e.RowIndex].Cells["Toodenimetus"].Value.ToString();

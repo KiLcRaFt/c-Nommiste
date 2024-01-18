@@ -49,6 +49,7 @@ namespace Tooded
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnKassa = new System.Windows.Forms.Button();
+            this.admin_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Toode_pb)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +62,7 @@ namespace Tooded
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dataGridView2.Size = new System.Drawing.Size(647, 150);
             this.dataGridView2.TabIndex = 0;
-            this.dataGridView2.RowHeaderMouseClick += DataGridView2_RowHeaderMouseClick1;
+            this.dataGridView2.RowHeaderMouseClick += DataGridView2_RowHeaderMouseClick2;
             // 
             // Kat_Box
             // 
@@ -225,9 +226,20 @@ namespace Tooded
             this.btnKassa.UseVisualStyleBackColor = true;
             this.btnKassa.Click += new System.EventHandler(this.btnKassa_Click);
             // 
+            // admin_btn
+            // 
+            this.admin_btn.Location = new System.Drawing.Point(603, 46);
+            this.admin_btn.Name = "admin_btn";
+            this.admin_btn.Size = new System.Drawing.Size(56, 30);
+            this.admin_btn.TabIndex = 25;
+            this.admin_btn.Text = "Kliendid";
+            this.admin_btn.UseVisualStyleBackColor = true;
+            this.admin_btn.Click += new System.EventHandler(this.admin_btn_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(671, 387);
+            this.Controls.Add(this.admin_btn);
             this.Controls.Add(this.btnKassa);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -248,12 +260,15 @@ namespace Tooded
             this.Controls.Add(this.Kat_Box);
             this.Controls.Add(this.dataGridView2);
             this.Name = "Form1";
+            this.Text = "Tooded";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Toode_pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+
 
         private void DataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -282,6 +297,7 @@ namespace Tooded
         private Button button2;
         private Button button3;
         private Button btnKassa;
+        private Button admin_btn;
     }
 }
 
