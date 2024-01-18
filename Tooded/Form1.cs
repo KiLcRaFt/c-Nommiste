@@ -53,7 +53,7 @@ namespace Tooded
             Kat_Box.Items.Clear();
             Kat_Box.Text = "";
             connect.Open();
-            adapter_kategooria = new SqlDataAdapter("SELECT Kategooria_nimetus FROM Kategooriatable", connect);
+            adapter_kategooria = new SqlDataAdapter("SELECT Kategooria_nimetus, Id FROM Kategooriatable", connect);
             DataTable dt_kategooria = new DataTable();
             adapter_kategooria.Fill(dt_kategooria);
             foreach (DataRow nimetus in dt_kategooria.Rows)
@@ -155,7 +155,7 @@ namespace Tooded
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (dataGridView2.SelectedRows.Count > 0)
+            if (dataGridView2.SelectedRows.Count >= 0)
             {
                 int id = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells["Id"].Value);
 

@@ -8,6 +8,8 @@ using System.Web;
 using System.Windows.Forms;
 using Aspose.Pdf;
 using iText.Layout.Element;
+using System.Drawing.Imaging;
+using System.Drawing;
 
 namespace Tooded
 {
@@ -196,6 +198,19 @@ namespace Tooded
             dataGridView1.Columns["KategooriaColumn"].Visible = false;
 
             connect.Close();
+        }
+
+        private void DataGridView1_RowHeaderMouseClick1(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox1.Image = System.Drawing.Image.FromFile(Path.Combine(Path.GetFullPath(@"..\..\Images"), dataGridView1.Rows[e.RowIndex].Cells["Pilt"].Value.ToString()));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Pilt puudub" + ex.Message);
+            }
         }
     }
 }
