@@ -17,9 +17,25 @@ namespace Tooded
 
         SqlDataAdapter adapter_toode, adapter_kategooria;
         SqlCommand command;
+        int kliendikaart = 0;
+        int boonus = 0;
         public Registration()
         {
             InitializeComponent();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                kliendikaart = 1;
+                boonus = 10;
+            }
+            else
+            {
+                kliendikaart = 0;
+                boonus = 0;
+            }
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -33,13 +49,19 @@ namespace Tooded
             
             if (on == false)
             {
-                command = new SqlCommand("INSERT INTO Kasutajad(nimi, pass, email, identify) values(@nimi, @pass, @email, 'Klient')", connect);
+                command = new SqlCommand("INSERT INTO Kasutajad(nimi, pass, email, identify, kliendikaart, boonus) values(@nimi, @pass, @email, 'Klient', @kliendikaart, @boonus)", connect);
                 connect.Open();
                 command.Parameters.AddWithValue("@nimi", txtboxLog.Text);
                 command.Parameters.AddWithValue("@pass", txtboxPass.Text);
                 command.Parameters.AddWithValue("@email", txtboxEmail.Text);
+                command.Parameters.AddWithValue("@kliendikaart", kliendikaart);
+                command.Parameters.AddWithValue("@boonus", boonus);
                 command.ExecuteNonQuery();
                 connect.Close();
+
+                this.Hide();
+                var login = new Login();
+                login.ShowDialog();
             }
             else
             {

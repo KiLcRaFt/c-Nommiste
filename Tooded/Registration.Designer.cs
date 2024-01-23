@@ -36,35 +36,37 @@
             this.txtboxEmail = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblReg
             // 
             this.lblReg.AutoSize = true;
-            this.lblReg.Font = new System.Drawing.Font("Noto Mono", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.lblReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.lblReg.Location = new System.Drawing.Point(12, 9);
             this.lblReg.Name = "lblReg";
-            this.lblReg.Size = new System.Drawing.Size(475, 57);
+            this.lblReg.Size = new System.Drawing.Size(383, 55);
             this.lblReg.TabIndex = 0;
             this.lblReg.Text = "Registreesimine";
             // 
             // lbllog
             // 
             this.lbllog.AutoSize = true;
-            this.lbllog.Font = new System.Drawing.Font("Noto Mono", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.lbllog.Location = new System.Drawing.Point(111, 114);
+            this.lbllog.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.lbllog.Location = new System.Drawing.Point(134, 114);
             this.lbllog.Name = "lbllog";
-            this.lbllog.Size = new System.Drawing.Size(75, 24);
+            this.lbllog.Size = new System.Drawing.Size(65, 25);
             this.lbllog.TabIndex = 1;
             this.lbllog.Text = "Login";
             // 
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Font = new System.Drawing.Font("Noto Mono", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.lblPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.lblPass.Location = new System.Drawing.Point(93, 156);
             this.lblPass.Name = "lblPass";
-            this.lblPass.Size = new System.Drawing.Size(114, 24);
+            this.lblPass.Size = new System.Drawing.Size(106, 25);
             this.lblPass.TabIndex = 2;
             this.lblPass.Text = "Password";
             // 
@@ -92,17 +94,17 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Font = new System.Drawing.Font("Noto Mono", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.lblEmail.Location = new System.Drawing.Point(132, 199);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(75, 24);
+            this.lblEmail.Size = new System.Drawing.Size(67, 25);
             this.lblEmail.TabIndex = 6;
             this.lblEmail.Text = "Gmail";
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Font = new System.Drawing.Font("Noto Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.btnSubmit.Location = new System.Drawing.Point(215, 256);
+            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.btnSubmit.Location = new System.Drawing.Point(379, 256);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(87, 29);
             this.btnSubmit.TabIndex = 7;
@@ -110,11 +112,34 @@
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.label1.Location = new System.Drawing.Point(74, 239);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 25);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Kliendikaart";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.25F);
+            this.checkBox1.Location = new System.Drawing.Point(215, 242);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(499, 309);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.txtboxEmail);
@@ -140,5 +165,7 @@
         private System.Windows.Forms.TextBox txtboxEmail;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

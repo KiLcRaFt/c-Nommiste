@@ -21,76 +21,11 @@ namespace Tooded
         SqlCommand command;
         DataTable dt_toode;
         Document document;
+        int boonus;
         public Kassa()
         {
             InitializeComponent();
             Indenity();
-        }
-
-        private void btnPlus_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                string nimetus = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Toodenimetus"].Value);
-                string Kokku = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Hind"].Value);
-
-                if (Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Kogus"].Value) > 0)
-                {
-
-                    connect.Open();
-                    command = new SqlCommand("UPDATE Toodetabel SET Kogus = Kogus - 1 WHERE Toodenimetus = @nimetus;", connect);
-                    command.Parameters.AddWithValue("@nimetus", nimetus);
-                    command.ExecuteNonQuery();
-                    connect.Close();
-                    listBox.Items.Add(nimetus+" "+Kokku);
-                    NaitaAndmed();
-                }
-                else
-                {
-                    MessageBox.Show("Kahjuks, toode on juba otsas.");
-                }
-            }
-        }   
-
-        private void btnKustuta_Click(object sender, EventArgs e)
-        {
-            if (listBox.SelectedItem != null)
-            {
-                string nimetus = listBox.SelectedItem.ToString();
-
-                connect.Open();
-                command = new SqlCommand("UPDATE Toodetabel SET Kogus = Kogus + 1 WHERE Toodenimetus = @nimetus;", connect);
-                command.Parameters.AddWithValue("@nimetus", nimetus);
-                command.ExecuteNonQuery();
-                connect.Close();
-                listBox.Items.Remove(nimetus);
-                NaitaAndmed();
-            }
-        }
-
-        private void btnSalv_Click(object sender, EventArgs e)
-        {
-            int kokku = 0;
-            document = new Document();//using Aspose.Pdf
-            var page = document.Pages.Add();
-            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Toode Hind"));
-            foreach (string Products in listBox.Items)
-            {
-                string[] nime = Products.Split(' ');
-                page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment(nime[0] +" " + nime[1]+" euro"));
-                kokku += Convert.ToInt32(nime[1]);
-            }
-
-            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("========================"));
-            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Kokku on "+kokku+" euro"));
-
-            Random rnd = new Random();
-            string name = Convert.ToString(rnd.Next(20000));
-            document.Save(@"..\..\Arved\"+name+".pdf");
-            document.Dispose();
-
-            MessageBox.Show("Pdf fail oli salvestatud! Nimi on "+name+".pdf");
-
         }
 
         public void Indenity()
@@ -104,6 +39,8 @@ namespace Tooded
             {
                 if (read.HasRows)
                 {
+                    int kliendikaartColumnIndex = read.GetOrdinal("kliendikaart");
+
                     while (read.Read())
                     {
                         int identifyColumnIndex = read.GetOrdinal("identify");
@@ -130,6 +67,13 @@ namespace Tooded
                         {
                             MessageBox.Show("Viga! Teil ei ole piisavalt õigusi.");
                         }
+                    }
+
+                    if (!read.IsDBNull(kliendikaartColumnIndex) && read.GetInt32(kliendikaartColumnIndex) == 1)
+                    {
+                        connect.Close();
+                        boonus = 10;
+                        
                     }
                 }
 
@@ -195,6 +139,84 @@ namespace Tooded
             {
                 MessageBox.Show("Pilt puudub" + ex.Message);
             }
+        }
+
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                string nimetus = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Toodenimetus"].Value);
+                string Kokku = Convert.ToString(dataGridView1.SelectedRows[0].Cells["Hind"].Value);
+
+                if (Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Kogus"].Value) > 0)
+                {
+
+                    connect.Open();
+                    command = new SqlCommand("UPDATE Toodetabel SET Kogus = Kogus - 1 WHERE Toodenimetus = @nimetus;", connect);
+                    command.Parameters.AddWithValue("@nimetus", nimetus);
+                    command.ExecuteNonQuery();
+                    connect.Close();
+                    listBox.Items.Add(nimetus + " " + Kokku);
+                    NaitaAndmed();
+                }
+                else
+                {
+                    MessageBox.Show("Kahjuks, toode on juba otsas.");
+                }
+            }
+        }
+
+        private void btnKustuta_Click(object sender, EventArgs e)
+        {
+            if (listBox.SelectedItem != null)
+            {
+                string nimetus = listBox.SelectedItem.ToString();
+
+                connect.Open();
+                command = new SqlCommand("UPDATE Toodetabel SET Kogus = Kogus + 1 WHERE Toodenimetus = @nimetus;", connect);
+                command.Parameters.AddWithValue("@nimetus", nimetus);
+                command.ExecuteNonQuery();
+                connect.Close();
+                listBox.Items.Remove(nimetus);
+                NaitaAndmed();
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                boonus = 10;
+            }
+            else
+            {
+                boonus = 0;
+            }
+        }
+
+        private void btnSalv_Click(object sender, EventArgs e)
+        {
+            double kokku = 0;
+            document = new Document();//using Aspose.Pdf
+            var page = document.Pages.Add();
+            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Toode Hind"));
+            foreach (string Products in listBox.Items)
+            {
+                string[] nime = Products.Split(' ');
+                page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment(nime[0] + " " + nime[1] + " euro"));
+                kokku += Convert.ToInt32(nime[1]);
+            }
+            kokku = kokku - ((kokku * boonus) / 100);
+            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("========================"));
+            page.Paragraphs.Add(new Aspose.Pdf.Text.TextFragment("Kokku on " + kokku + " euro"));
+
+            Random rnd = new Random();
+            string name = Convert.ToString(rnd.Next(20000));
+            document.Save(@"..\..\Arved\" + name + ".pdf");
+            document.Dispose();
+
+            MessageBox.Show("Pdf fail oli salvestatud! Nimi on " + name + ".pdf");
+
         }
     }
 }

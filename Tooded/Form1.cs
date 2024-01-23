@@ -252,8 +252,10 @@ namespace Tooded
 //	Id int primary key identity(1,1) not null,
 //    nimi varchar(30),
 //    pass varchar(30),
-//	email varchar(30),
+//	  email varchar(30),
 //    identify varchar(10)
+//    kliendikaart bit,
+//    boonus int
 //);
 
 //insert into Kasutajad(nimi, pass, identify)
