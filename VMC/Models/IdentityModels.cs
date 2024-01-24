@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -20,10 +21,10 @@ namespace VMC.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        //public ApplicationDbContext()
-        //    : base("DefaultConnection", throwIfV1: false)
-        //{
-        //}
+        public ApplicationDbContext()
+            : base("DefaultConnection")
+        {
+        }
 
         public static ApplicationDbContext Create()
         {
