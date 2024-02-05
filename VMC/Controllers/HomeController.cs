@@ -19,7 +19,7 @@ namespace VMC.Controllers
         public ActionResult kutse()
         {
             int hour = DateTime.Now.Hour;
-            ViewBag.Greeting = hour < 12 ? "Tere hommikust" : "Tere päevast";//hour<10? = if(hour < 10) / : = else
+            ViewBag.Greeting = hour < 10 ? "Tere hommikust" : "Tere päevast";//hour<10? = if(hour < 10) / : = else
             ViewBag.Message = "Ootan sind oma peole. Tule kindlasti! Ootan sind!";
             return View();
         }
@@ -31,11 +31,13 @@ namespace VMC.Controllers
         }
 
         [HttpPost]
-        public ViewResult ankeet(guest Gosling)
+        public ViewResult Ankeet(guest Gosling)
         {
             E_mail(Gosling);
             if (ModelState.IsValid)
             {
+                db.Guests.Add(Gosling);
+                db.SaveChanges();
                 return View("Thanks", Gosling);
             }
             else
@@ -65,6 +67,13 @@ namespace VMC.Controllers
             }
         }
 
+        GuestContext db = new GuestContext();
+        //[Authorize]
+        public ActionResult Guests()
+        {
+            IEnumerable<guest> guests = db.Guests;
+            return View(guests);
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -77,14 +86,6 @@ namespace VMC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-
-        GuestContext db = new GuestContext();
-        [Authorize]
-        public ActionResult Guests()
-        {
-            IEnumerable<guest> guests = db.Guests;
-            return View(guests);
         }
     }
 }

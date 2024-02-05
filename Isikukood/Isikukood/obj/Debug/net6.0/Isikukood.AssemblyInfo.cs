@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Isikukood")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0877fb4724d5fdde8d08511569bbe1762d70a7a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("Isikukood")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Isikukood")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
