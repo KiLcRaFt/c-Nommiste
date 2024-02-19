@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace VMC2_0.Models
 {
-    public class GuestContext
+    public class GuestContext: DbContext
     {
         public DbSet<Guest> Guests { get; set; }
     }

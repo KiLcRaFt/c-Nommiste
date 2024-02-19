@@ -71,5 +71,12 @@ namespace VMC2_0.Controllers
                 ViewBag.Message = "Mul on kahju! Ei saa kirja saada!!!";
             }
         }
+
+        GuestContext db = new GuestContext();
+        public ActionResult Guests()
+        {
+            IEnumerable<Guest> guests = db.Guests;
+            return View(guests);
+        }
     }
 }
