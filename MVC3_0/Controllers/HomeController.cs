@@ -29,7 +29,10 @@ namespace MVC3_0.Controllers
         public ViewResult Ankeet(Guest guest)
         {
             E_mail(guest);
-            if (ModelState.IsValid) { return View("Thanks", guest); }
+            if (ModelState.IsValid) { 
+                db.Guests.Add(guest);
+                db.SaveChanges();
+                return View("Thanks", guest); }
             else { return View(); }
         }
         public void E_mail(Guest guest)
@@ -53,11 +56,43 @@ namespace MVC3_0.Controllers
         }
 
         GuestContext db = new GuestContext();
+        //[Authorize] - увидит только авторизованный пользователь
         public ActionResult Guests()
         {
             IEnumerable<Guest> guests = db.Guests;
 
             return View(guests);
+        }
+
+        [HttpGet]
+        public ActionResult Create(Guest guest)
+        {
+            db.Guests.Add(guest);
+            db.SaveChanges();
+            return RedirectToAction("Guests");
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id) 
+        {
+            Guest g = db.Guests.Find(id);
+            if (g == null)
+            {
+                return HttpNotFound();
+            }
+            return View(g);
+        }
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Guest g = db.Guests.Find(id);
+            if (g == null)
+            {
+                return HttpNotFound();
+            }
+            db.Guests.Remove(g);
+            db.SaveChanges();
+            return RedirectToAction("Guests");
         }
     }
 }
