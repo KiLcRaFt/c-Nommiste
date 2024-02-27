@@ -1,0 +1,20 @@
+﻿@model MVC3_0.Models.Guest
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <p>Sisesta nimi: @Html.TextBoxFor(x => x.Name)</p>
+    <p>Sisesta email: @Html.TextBoxFor(x => x.Email)</p>
+    <p>Sisesta tel: @Html.TextBoxFor(x => x.Phone)</p>
+    <p>
+        Sinu valik:
+        @Html.DropDownListFor(x => x.WillAttend, 
+       new[]
+        {
+            new SelectListItem(){Text="Tule kindllasti!", Value=bool.TrueString},
+            new SelectListItem(){Text="kahjuks ei saa tulla!", Value=bool.FalseString}
+        }, "Vali siit");
+    </p>
+
+    <input type="submit" value="Saada vastus" />
+}
