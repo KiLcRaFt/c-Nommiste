@@ -8,7 +8,7 @@ namespace MVC3_0.Models
 {
     public class Guest
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "Siseta nimi")]
 
         public string Name { get; set; }
