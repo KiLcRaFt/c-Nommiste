@@ -56,7 +56,7 @@ namespace MVC3_0.Controllers
         }
 
         GuestContext db = new GuestContext();
-        //[Authorize] - увидит только авторизованный пользователь
+        [Authorize] //- увидит только авторизованный пользователь
         public ActionResult Guests()
         {
             IEnumerable<Guest> guests = db.Guests;
