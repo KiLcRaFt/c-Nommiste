@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Koolitused")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TTHK")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Koolitused")]
-[assembly: AssemblyCopyright("Copyright © TTHK 2024")]
+[assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c1ac9027-67b2-4706-9e56-45e8d95b6499")]
+[assembly: Guid("826a0c61-86f5-4313-bb0e-a44a503b5edc")]
 
 // Version information for an assembly consists of the following four values:
 //
