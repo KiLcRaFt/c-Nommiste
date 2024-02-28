@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MVC3_0.Models.Pidu>
+
+@{
+    ViewBag.Title = "Pidid";
+}
+
+<h2>Pidid</h2>
+
+<p>
+    @Html.ActionLink("Loo uus", "PCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Muuda", "PEdit", new { id=item.Id }) |
+            @Html.ActionLink("Kustuta", "PDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

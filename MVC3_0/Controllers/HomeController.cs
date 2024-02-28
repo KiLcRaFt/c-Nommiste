@@ -134,5 +134,74 @@ namespace MVC3_0.Controllers
             IEnumerable<Guest> guests = db.Guests.Where(g => g.WillAttend == false);
             return View(guests);
         }
+
+        // ----------------------------------------------------------------------------
+
+        PiduContext PiduDB = new PiduContext();
+        [Authorize]
+
+        public ActionResult Pidus()
+        {
+            IEnumerable<Pidu> Pidus = PiduDB.Pidus;
+            return View(Pidus);
+
+        }
+
+        [HttpGet]
+        public ActionResult PCreate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PCreate(Pidu pidu)
+        {
+            PiduDB.Pidus.Add(pidu);
+            PiduDB.SaveChanges();
+            return RedirectToAction("Pidus");
+        }
+
+        [HttpGet]
+        public ActionResult PDelete(int id)
+        {
+            Pidu y = PiduDB.Pidus.Find(id);
+            if (y == null)
+            {
+                return HttpNotFound();
+            }
+            return View(y);
+        }
+
+        [HttpPost, ActionName("PDelete")]
+        public ActionResult PDeleteConfirmed(int id)
+        {
+            Pidu y = PiduDB.Pidus.Find(id);
+            if (y == null)
+            {
+                return HttpNotFound();
+            }
+            PiduDB.Pidus.Remove(y);
+            PiduDB.SaveChanges();
+            return RedirectToAction("Pidus");
+        }
+
+        [HttpGet]
+        public ActionResult PEdit(int? id)
+        {
+            Pidu y = PiduDB.Pidus.Find(id);
+            if (y == null)
+            {
+                return HttpNotFound();
+            }
+            return View(y);
+        }
+
+        [HttpPost, ActionName("PEdit")]
+        public ActionResult PEditConfirmed(Pidu pidu)
+        {
+            PiduDB.Entry(pidu).State = EntityState.Modified;
+            PiduDB.SaveChanges();
+            return RedirectToAction("Pidus");
+        }
     }
 }

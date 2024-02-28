@@ -1,17 +1,16 @@
 ﻿@model MVC3_0.Models.Guest
 
 @{
-    ViewBag.Title = "Looma";
+    ViewBag.Title = "Loomine";
 }
 
-<h2>Create</h2>
+<h2>Loomine</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Guest</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -57,5 +56,5 @@
 }
 
 <div>
-    @Html.ActionLink("Tagasi nimekirja", "Index")
+    @Html.ActionLink("Tagasi nimekirja", "Guests")
 </div>
