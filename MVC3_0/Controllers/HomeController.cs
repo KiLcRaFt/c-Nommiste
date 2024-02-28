@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -65,6 +66,12 @@ namespace MVC3_0.Controllers
         }
 
         [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult Create(Guest guest)
         {
             db.Guests.Add(guest);
@@ -93,6 +100,39 @@ namespace MVC3_0.Controllers
             db.Guests.Remove(g);
             db.SaveChanges();
             return RedirectToAction("Guests");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            Guest g = db.Guests.Find(id);
+            if (g == null)
+            {
+                return HttpNotFound();
+            }
+            return View(g);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public ActionResult EditConfirmed(Guest guest)
+        {
+            db.Entry(guest).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Guests");
+        }
+
+        [HttpGet]
+        public ActionResult Accept()
+        {
+            IEnumerable<Guest> guests = db.Guests.Where(g => g.WillAttend == true);
+            return View(guests);
+        }
+
+        [HttpGet]
+        public ActionResult DisAccept()
+        {
+            IEnumerable<Guest> guests = db.Guests.Where(g => g.WillAttend == false);
+            return View(guests);
         }
     }
 }

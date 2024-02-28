@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<MVC3_0.Models.Guest>
 
 @{
-    ViewBag.Title = "Külalised";
+    ViewBag.Title = "loobusid";
 }
 
-<h2>Külalised</h2>
+<h2>DisAccept</h2>
 
 <p>
-    @Html.ActionLink("Loo uus", "Create", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Loo uus", "Create")
 </p>
 <p>
     @Html.ActionLink("Tulevad", "Accept", new { @class = "btn btn-primary" })
-    @Html.ActionLink("Loobusid", "DisAccept", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Näita kõik", "Guests", new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
